@@ -1,0 +1,7 @@
+#include "sram.cevent"
+// patch save type string to SRAM_Vnnn for better save type auto detection
+PUSH
+ORG 0xef32cc
+String(SRAM_Vnnn)
+BYTE 0
+POP

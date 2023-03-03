@@ -1,0 +1,9 @@
+// change game code to SZMR
+// this improves save type auto detect on some platforms, ie. open_agb_firm
+PUSH
+ORG 0xac
+String(SZMR)
+// fix checksum
+ORG 0xbd
+BYTE 0xba
+POP

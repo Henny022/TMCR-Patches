@@ -19,15 +19,6 @@
 #define FreeSpace 0xef3340
 ORG FreeSpace
 
-// change game code to SZMR
-// this improves save type auto detect on some platforms, ie. open_agb_firm
-PUSH
-ORG 0xac
-// SZMR
-BYTE 0x53 0x5a 0x4d 0x52
-// fix checksum
-ORG 0xbd
-BYTE 0xba
-POP
-
+#include "qol/game_code.event"
+#include "sram.event"
 #include "qol/autotext.cevent"
