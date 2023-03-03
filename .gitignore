@@ -1,0 +1,8 @@
+venv
+*.gba
+*.sav
+*.o
+*.json
+*.cevent
+*.s
+*.exe
