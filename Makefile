@@ -9,6 +9,7 @@ $(error variable REPO not set)
 endif
 
 CC := arm-none-eabi-gcc
+SCANINC := python tools/scaninc.py
 
 CFLAGS += $(WARNINGS) -Wno-multichar -Wno-builtin-declaration-mismatch
 CFLAGS += -ffunction-sections -fdata-sections
@@ -16,8 +17,7 @@ CFLAGS += -mcpu=arm7tdmi -mthumb -mlong-calls
 CFLAGS += -I $(REPO)/tools/agbcc/include -I $(REPO)/include -nostdinc
 CFLAGS += -undef -DEU -DREVISION=0 -DLANGUAGE=ENGLISH
 
-tmcr.gba: Buildfile.event tmc_eu.gba $(shell grep -Po "(?<=#include \").*(?=\")" Buildfile.event)
-	@echo deps $^
+tmcr.gba: Buildfile.event tmc_eu.gba $(shell $(SCANINC) Buildfile.event)
 	cp tmc_eu.gba $@
 	mono ColorzCore.exe A FE8 -output:$@ -input:$<
 
