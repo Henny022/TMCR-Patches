@@ -9,6 +9,8 @@ $(error variable REPO not set)
 endif
 
 CC := arm-none-eabi-gcc
+AS := arm-none-eabi-as
+OBJCOPY := arm-none-eabi-objcopy
 SCANINC := python tools/scaninc.py
 
 CFLAGS += $(WARNINGS) -Wno-multichar -Wno-builtin-declaration-mismatch
@@ -24,8 +26,14 @@ tmcr.gba: Buildfile.event tmc_eu.gba $(shell $(SCANINC) Buildfile.event)
 %.cevent: %.o symbols.json
 	eac compile -o $@ $< --symbols symbols.json
 
+%.bin: %.o
+	$(OBJCOPY) -O binary $< $@
+
 %.o: %.c
 	$(CC) $(CFLAGS) -c -o $@ $<
+
+%.o: %.s
+	$(AS) -mcpu=arm7tdmi -c -o $@ $<
 
 symbols.json: $(REPO)/tmc_eu.elf
 	eac extract_symbols -o $@ $<
