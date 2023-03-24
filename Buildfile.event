@@ -23,3 +23,4 @@ ORG FreeSpace
 #include "sram.event"
 #include "qol/autotext.cevent"
 #include "qol/fileselect.cevent"
+#include "qol/nointro.cevent"
