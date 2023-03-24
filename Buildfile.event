@@ -24,3 +24,15 @@ ORG FreeSpace
 #include "qol/autotext.cevent"
 #include "qol/fileselect.cevent"
 #include "qol/nointro.cevent"
+#include "checkIds/base.cevent"
+#include "checkIds/chests.cevent"
+
+// example check ids
+n_checks:
+WORD 1
+checks:
+SHORT 6
+
+// links house chest
+ORG 0xf25a8
+ChestID 0x16 0 5 2 1
