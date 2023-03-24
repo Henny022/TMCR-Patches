@@ -22,3 +22,4 @@ ORG FreeSpace
 #include "qol/game_code.event"
 #include "sram.event"
 #include "qol/autotext.cevent"
+#include "qol/fileselect.cevent"
