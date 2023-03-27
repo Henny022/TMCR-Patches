@@ -23,16 +23,48 @@ ORG FreeSpace
 #include "sram.event"
 #include "qol/autotext.cevent"
 #include "qol/fileselect.cevent"
-#include "qol/nointro.cevent"
+#include "new_game.cevent"
 #include "checkIds/base.cevent"
 #include "checkIds/chests.cevent"
 
+// example starting flags
+ALIGN 4
+n_starting_flags:
+WORD 5
+starting_flags:
+SHORT 0x246 // intro cutscene
+SHORT 0x14  // ezlo
+SHORT 0x2C8 // Ezlo trigger links house
+SHORT 0x2C9 // Ezlo trigger links house
+SHORT 0x2CA // Ezlo trigger links house
+// example starting items
+ALIGN 4
+n_starting_items:
+WORD 1
+starting_items:
+BYTE 13 // shield
+// example starting location
+// links room in front of the stairs
+ALIGN 4
+starting_pos:
+SHORT 0x58
+SHORT 0x38
+starting_area:
+BYTE 0x22
+starting_room:
+BYTE 0x15
+starting_anim_state:
+BYTE 0x04
+
 // example check ids
+ALIGN 4
 n_checks:
 WORD 1
 checks:
 SHORT 6
 
+PUSH
 // links house chest
 ORG 0xf25a8
 ChestID 0x16 0 5 2 1
+POP
