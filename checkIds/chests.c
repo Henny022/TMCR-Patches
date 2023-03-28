@@ -18,10 +18,9 @@ void OpenSmallChest(u32 pos, u32 layer) {
     }
     if ((layer >> 1) == ((u32)(t->_6 << 31) >> 31)) {
         if (found) {
-            u16 check_id = t->_2 | (t->_3<<8);
-            u16 item = get_item_for_check_id(check_id);
+            u16 item = get_item_for_global_flag(local2global(t->localFlag));
             SetLocalFlag(t->localFlag);
-            CreateItemEntity(item & 0xff, (item >> 8)&0xff, 0);
+            CreateItemEntity(get_item_id(item), get_item_subvalue(item), 0);
         } else {
             CreateItemEntity(ITEM_FAIRY, 0, 0);
         }

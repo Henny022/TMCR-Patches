@@ -1,0 +1,5 @@
+##Check: put a chest with a check ID
+Check, 0, 4, -game:FE8 -indexMode:8
+	global flag, 0, 2
+	item id, 2, 1
+	subvalue, 3, 1
