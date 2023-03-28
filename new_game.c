@@ -6,6 +6,8 @@ extern const u32 n_starting_items;
 extern const u8 starting_items[];
 extern const u32 n_starting_flags;
 extern const u16 starting_flags[];
+extern const u32 n_starting_fusions;
+extern const u8 starting_fusions[];
 extern const u8 starting_area;
 extern const u8 starting_room;
 extern const u8 starting_anim_state;
@@ -36,6 +38,11 @@ u32 FinalizeSave(void) {
         {
             SetInventoryValue(starting_items[i], 1);
         }
+        for (u32 i = 0; i < n_starting_fusions; i++)
+        {
+            WriteBit(gSave.fusedKinstones, starting_fusions[i]);
+        }
+        
     }
     if (gSave.name[0] == 0) {
         MemCopy(gUnk_0811E470, &gSave.name, FILENAME_LENGTH - 1);
