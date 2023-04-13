@@ -1,5 +1,5 @@
 #include "base.h"
-#include <area.h>
+#include <flags.h>
 #include <item.h>
 
 extern const u32 n_checks;
@@ -18,4 +18,9 @@ int get_item_for_global_flag(int flag)
         }
     }
     return ITEM_FAIRY;
+}
+
+void set_item_global_flag(int flag)
+{
+    SetGlobalFlag(flag);
 }

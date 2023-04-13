@@ -3,6 +3,7 @@
 #include <item.h>
 #include <flags.h>
 #include "base.h"
+#include "../debug/mgba.h"
 
 extern void CreateItemEntity(u32 type, u32 type2, u32 delay);
 
@@ -19,7 +20,7 @@ void OpenSmallChest(u32 pos, u32 layer) {
     if ((layer >> 1) == ((u32)(t->_6 << 31) >> 31)) {
         if (found) {
             u16 item = get_item_for_global_flag(local2global(t->localFlag));
-            SetLocalFlag(t->localFlag);
+            set_item_global_flag(local2global(t->localFlag));
             CreateItemEntity(get_item_id(item), get_item_subvalue(item), 0);
         } else {
             CreateItemEntity(ITEM_FAIRY, 0, 0);
