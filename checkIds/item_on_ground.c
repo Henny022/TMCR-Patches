@@ -80,3 +80,15 @@ Entity* LoadRoomEntity(const EntityData* dat) {
     }
     return entity;
 }
+
+void sub_08081404(Entity* this, u32 arg1) {
+    if (arg1 && this->field_0x86.HWORD) {
+        int flag = flag2global(this->field_0x86.HWORD);
+        if (flag == -1)
+            SetFlag(this->field_0x86.HWORD);
+        else
+            set_item_global_flag(flag);
+    }
+
+    DeleteThisEntity();
+}
