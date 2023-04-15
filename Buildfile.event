@@ -15,16 +15,36 @@
 #define BLRange(pointer) "((pointer - (CURRENTOFFSET + 4))>>1)"
 #define BL(pointer) "SHORT (((BLRange(pointer)>>11)&0x7ff)|0xf000) ((BLRange(pointer)&0x7ff)|0xf800);"
 
+// IWRAM
 
+// EWRAM
+#define gScriptIO 0x02038560
+
+// ROM
 #define FreeSpace 0xef3340
 ORG FreeSpace
 
+// section table
+ALIGN 16
+String("SECTION_TABLE   ")
+
+String(SCRIPTIO)
+POIN SCRIPTIO_Header
+WORD 0
+
+WORD 0 0 0 0
+
+// section SCRIPTIO
+SCRIPTIO_Header:
+WORD gScriptIO
+
+#include "debug/mgba.cevent"
 #include "qol/game_code.event"
 #include "sram.event"
 #include "qol/autotext.cevent"
 #include "qol/fileselect.cevent"
 #include "new_game.cevent"
-#include "checkIds/base.cevent"
+#include "checkIds/base_scriptio.cevent"
 #include "checkIds/chests.cevent"
 #include "checkIds/item_on_ground.cevent"
 

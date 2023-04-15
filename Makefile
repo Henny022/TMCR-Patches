@@ -41,3 +41,4 @@ symbols.json: $(REPO)/tmc_eu.elf
 .PHONY: clean
 clean:
 	rm -f tmcr.gba
+	rm -f $(shell find . -name '*.cevent')
