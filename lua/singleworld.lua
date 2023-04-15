@@ -1,4 +1,4 @@
-local scriptio = require 'lua/scriptio'
+local scriptio = require 'scriptio'
 scriptio.init()
 
 function scriptio_main()

@@ -1,9 +1,9 @@
 local scriptio = {}
+local sections = require "sections"
 
 local gScriptIO = 0
 
 function scriptio.init()
-    local sections = require "lua/sections"
     local header = sections.get_header('SCRIPTIO')
     gScriptIO = emu:read32(header)
     console:log('found gScriptIO at ' .. gScriptIO)
