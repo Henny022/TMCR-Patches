@@ -23,6 +23,9 @@ tmcr.gba: Buildfile.event tmc_eu.gba $(shell $(SCANINC) Buildfile.event)
 	cp tmc_eu.gba $@
 	mono ColorzCore.exe A FE8 -output:$@ -input:$<
 
+modules.cevent: $(shell ls modules/*)
+	tools/merge_modules.py > $@
+
 %.cevent: %.o symbols.json
 	eac compile -o $@ $< --symbols symbols.json
 
@@ -42,3 +45,7 @@ symbols.json: $(REPO)/tmc_eu.elf
 clean:
 	rm -f tmcr.gba
 	rm -f $(shell find . -name '*.cevent')
+
+.PHONY: run
+run: tmcr.gba
+	mgba-qt tmcr.gba
