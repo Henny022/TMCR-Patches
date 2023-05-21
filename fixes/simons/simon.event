@@ -1,0 +1,4 @@
+PUSH
+ORG (0xf0450+0xE*8+1) //Change the local flag of tile entity gUnk_080F0E1C[0xE], the one loaded when said flag is not yet set and contains the piece of heart - relies on the flag not being set on room load
+BYTE 0xC6
+POP
