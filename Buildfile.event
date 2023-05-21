@@ -44,10 +44,14 @@ WORD gScriptIO
 #include "qol/autotext.cevent"
 #include "qol/fileselect.cevent"
 #include "new_game.cevent"
+
 #include "checkIds/protocol_scriptio.cevent"
 #include "checkIds/base_protocol.cevent"
+
 #include "checkIds/chests.cevent"
 #include "checkIds/item_on_ground.cevent"
+#include "checkIds/heartContainer.cevent"
+
 //#include "shhh/shhh.event"
 #include "test.cevent"
 
