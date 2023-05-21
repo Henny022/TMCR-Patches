@@ -47,6 +47,8 @@ WORD gScriptIO
 #include "checkIds/base_scriptio.cevent"
 #include "checkIds/chests.cevent"
 #include "checkIds/item_on_ground.cevent"
+//#include "shhh/shhh.cevent"
+#include "test.cevent"
 
 #include "modules.cevent"
 
@@ -66,9 +68,6 @@ BYTE 0x04
 // example check ids
 ALIGN 4
 n_checks:
-WORD 3
+WORD 0
 checks:
 // Check global_flag itemId subvalue
-Check 0x216 6 0
-Check 0x415 0x56 0
-Check 0x416 4 0

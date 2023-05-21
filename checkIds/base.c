@@ -8,7 +8,7 @@ extern const struct{
     u16 item;
 } checks[];
 
-int get_item_for_global_flag(int flag)
+int peek_item_for_global_flag(int flag)
 {
     for (u32 i = 0; i < n_checks; i++)
     {
@@ -17,10 +17,18 @@ int get_item_for_global_flag(int flag)
             return checks[i].item;
         }
     }
-    return ITEM_FAIRY;
+    return ITEM_FIRE_ROD;
 }
 
-void set_item_global_flag(int flag)
+int get_item_for_global_flag(int flag)
 {
     SetGlobalFlag(flag);
+    for (u32 i = 0; i < n_checks; i++)
+    {
+        if (checks[i].flag == flag)
+        {
+            return checks[i].item;
+        }
+    }
+    return ITEM_FIRE_ROD;
 }

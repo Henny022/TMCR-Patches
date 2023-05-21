@@ -1,8 +1,8 @@
 #include <global.h>
 #include <area.h>
 
+int peek_item_for_global_flag(int flag);
 int get_item_for_global_flag(int flag);
-void set_item_global_flag(int flag);
 
 inline int get_item_id(int item)
 {

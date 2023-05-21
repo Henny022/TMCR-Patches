@@ -6,16 +6,17 @@ function scriptio_main()
         local t = scriptio.recv()
         local cmd = t>>24
         local flag = t&0xffffff
-        console:log('cmd ' .. cmd .. ' ' .. flag)
         if cmd == 1 then
+            -- peek item
+            console:log('peek ' .. flag)
+            scriptio.send((2<<24) | 22)
+        elseif cmd == 3 then
             -- get item
-            scriptio.send(6)
-        elseif cmd == 2 then
-            -- set flag
-            console:log('got ' .. flag)
+            console:log('get ' .. flag)
+            scriptio.send((4<<24) | 22)
+        else
+            console:log('unknown command ' .. cmd .. ' ' .. flag)
         end
-    else
-        scriptio.send(3<<24|4)
     end
 end
 

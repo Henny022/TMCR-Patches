@@ -1,6 +1,7 @@
 #include <save.h>
 #include <common.h>
 #include <flags.h>
+#include <game.h>
 
 extern const u32 n_starting_items;
 extern const u8 starting_items[];
@@ -16,13 +17,15 @@ extern const struct{
     s16 y;
 } starting_pos;
 
+extern u32 GiveItem(u32 item, u32 param_2);
+
 u32 FinalizeSave(void) {
     if (gSave.invalid || gSave.initialized != 1) {
         gSave.invalid = 0;
         gSave.initialized = 1;
         gSave.global_progress = 1;
-        gSave.stats.health = 24;
-        gSave.stats.maxHealth = 24;
+        gSave.stats.health = 160;
+        gSave.stats.maxHealth = 160;
         gSave.saved_status.area_next = starting_area;
         gSave.saved_status.room_next = starting_room;
         gSave.saved_status.start_anim = starting_anim_state;
@@ -36,13 +39,12 @@ u32 FinalizeSave(void) {
         }
         for (u32 i = 0; i < n_starting_items; i++)
         {
-            SetInventoryValue(starting_items[i], 1);
+            GiveItem(starting_items[i], 1);
         }
         for (u32 i = 0; i < n_starting_fusions; i++)
         {
             WriteBit(gSave.fusedKinstones, starting_fusions[i]);
         }
-        
     }
     if (gSave.name[0] == 0) {
         MemCopy(gUnk_0811E470, &gSave.name, FILENAME_LENGTH - 1);

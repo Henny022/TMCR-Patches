@@ -2,14 +2,26 @@
 #include <flags.h>
 #include "../scriptio.h"
 
-int get_item_for_global_flag(int flag)
+int peek_item_for_global_flag(int flag)
 {
     scriptio_send((1<<24) | flag);
-    return scriptio_recv();
+    u32 r = scriptio_recv();
+    while (!((r>>24)==2))
+    {
+        scriptio_send((6<<24) | (r&0xffffff));
+        r = scriptio_recv();
+    }
+    return r&0xffffff;
 }
 
-void set_item_global_flag(int flag)
+int get_item_for_global_flag(int flag)
 {
-    scriptio_send((2<<24) | flag);
-    SetGlobalFlag(flag);
+    scriptio_send((3<<24) | flag);
+    u32 r = scriptio_recv();
+    while (!((r>>24)==4))
+    {
+        scriptio_send((6<<24) | (r&0xffffff));
+        r = scriptio_recv();
+    }
+    return r&0xffffff;
 }

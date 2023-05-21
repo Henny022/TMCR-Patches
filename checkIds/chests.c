@@ -19,8 +19,9 @@ void OpenSmallChest(u32 pos, u32 layer) {
     }
     if ((layer >> 1) == ((u32)(t->_6 << 31) >> 31)) {
         if (found) {
-            u16 item = get_item_for_global_flag(local2global(t->localFlag));
-            set_item_global_flag(local2global(t->localFlag));
+            int item = get_item_for_global_flag(local2global(t->localFlag));
+            //set_item_global_flag(local2global(t->localFlag));
+            SetLocalFlag(t->localFlag);
             CreateItemEntity(get_item_id(item), get_item_subvalue(item), 0);
         } else {
             CreateItemEntity(ITEM_FAIRY, 0, 0);
@@ -28,5 +29,19 @@ void OpenSmallChest(u32 pos, u32 layer) {
         sub_0807B7D8(0x74, pos, layer);
         RequestPriorityDuration(NULL, 120);
         SoundReq(SFX_CHEST_OPEN);
+    }
+}
+
+void sub_08084074(u32 param_1) {
+    TileEntity* tileEntity = (TileEntity *)GetCurrentRoomProperty(3);
+    if (tileEntity != NULL) {
+        for (; tileEntity->type != 0; tileEntity++) {
+            if ((tileEntity->type == BIG_CHEST) && (param_1 == tileEntity->localFlag)) {
+                int item = get_item_for_global_flag(local2global(tileEntity->localFlag));
+                //set_item_global_flag(local2global(t->localFlag));
+                CreateItemEntity(get_item_id(item), get_item_subvalue(item), 0);
+                return;
+            }
+        }
     }
 }

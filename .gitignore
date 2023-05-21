@@ -1,8 +1,14 @@
 venv
+.vscode
 *.gba
+*.bps
 *.sav
 *.o
-*.json
+*.bin
+symbols.json
 *.cevent
 *.s
 *.exe
+music
+tools/ext
+*.png
