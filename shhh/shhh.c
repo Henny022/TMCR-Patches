@@ -1,6 +1,6 @@
 #include <entity.h>
 #include <item.h>
-#include "../scriptio.h"
+#include "../checkIds/protocol.h"
 #include "../checkIds/base.h"
 
 extern void(*const sPlayerActions[])(Entity*);
@@ -10,9 +10,9 @@ void DoPlayerAction(Entity* this) {
     {
         if (gScriptIO.rx.status)
         {
-            u32 t = scriptio_recv();
-            u32 cmd = t>>24;
-            u32 value = t&0xffffff;
+            u32 t = protocol_recv(TRUE);
+            u32 cmd = packet_type(t);
+            u32 value = packet_value(t);
             if (cmd==5)
             {
                 CreateItemEntity(get_item_id(value), get_item_subvalue(value), 0);

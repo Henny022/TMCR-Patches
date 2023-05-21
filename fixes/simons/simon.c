@@ -8,10 +8,11 @@ extern Entity* gUnk_080F0CB8[15];
 extern u8* gUnk_080F0E08[];
 extern TileEntity gUnk_080F0E1C[];
 
+extern void sub_0804B3C4(TileEntity*);
+
 void sub_StateChange_SimonsSimulation_Main(void) {
     u32 r;
     u32 index;
-    u32 tmp;
     index = 0;
     if (CheckGlobalFlag(LV4_CLEAR)) {
         index = 1;
