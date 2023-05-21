@@ -1,0 +1,2 @@
+#define sPlayerActions 0x11b128
+#include "shhh.cevent"

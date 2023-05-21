@@ -8,10 +8,10 @@ extern void(*const sPlayerActions[])(Entity*);
 void DoPlayerAction(Entity* this) {
     if (this->action==1)
     {
-        if (gScriptIO.rx.status)
+        u32 t = protocol_recv(TRUE);
+        u32 cmd = packet_type(t);
+        if (cmd != 0x7f)
         {
-            u32 t = protocol_recv(TRUE);
-            u32 cmd = packet_type(t);
             u32 value = packet_value(t);
             if (cmd==5)
             {

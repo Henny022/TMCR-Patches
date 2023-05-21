@@ -48,7 +48,7 @@ WORD gScriptIO
 #include "checkIds/base_protocol.cevent"
 #include "checkIds/chests.cevent"
 #include "checkIds/item_on_ground.cevent"
-//#include "shhh/shhh.cevent"
+//#include "shhh/shhh.event"
 #include "test.cevent"
 
 #include "fixes/simons/simon.event"
