@@ -3,6 +3,9 @@
 
 int peek_item_for_global_flag(int flag);
 int get_item_for_global_flag(int flag);
+int peek_item_for_global_flag_with_default(int flag, int default_value);
+int get_item_for_global_flag_with_default(int flag, int default_value);
+
 
 inline int get_item_id(int item)
 {
@@ -12,6 +15,11 @@ inline int get_item_id(int item)
 inline int get_item_subvalue(int item)
 {
     return (item >> 8) & 0xff;
+}
+
+inline int get_item_from_value_and_subvalue(int value, int subvalue)
+{
+    return ((value & 0xff) | ((subvalue & 0xff) << 8));
 }
 
 inline int local2global(int flag)

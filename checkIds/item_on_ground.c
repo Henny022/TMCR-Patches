@@ -29,7 +29,7 @@ Entity* LoadRoomEntity(const EntityData* dat) {
             }
             else
             {
-                int item = peek_item_for_global_flag(flag);
+                int item = peek_item_for_global_flag_with_default(flag, get_item_from_value_and_subvalue(entity->type, entity->type2));
                 entity->type = get_item_id(item);
             }
         }
@@ -83,7 +83,7 @@ bool32 sub_08081420(Entity* this) {
     int subvalue = this->type2;
     if (flag != -1)
     {
-        int item = get_item_for_global_flag(flag);
+        int item = get_item_for_global_flag_with_default(flag, get_item_from_value_and_subvalue(item_id, subvalue));
         item_id = get_item_id(item);
         subvalue = get_item_subvalue(item);
     }
