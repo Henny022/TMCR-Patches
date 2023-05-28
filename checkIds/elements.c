@@ -7,6 +7,7 @@
 #include <screen.h>
 #include <fade.h>
 #include <sound.h>
+#include <item.h>
 #include "base.h"
 
 typedef struct {
@@ -33,22 +34,23 @@ void FourElements_Action2(FourElementsEntity* this) {
             u32 flag;
             u32 item;
             switch (super->type) {
-                case 0x40:
+                case ITEM_EARTH_ELEMENT:
                     flag = MACHI_SET_1;
                     break;
-                case 0x41:
+                case ITEM_FIRE_ELEMENT:
                     flag = MACHI_SET_2;
                     break;
-                case 0x42:
+                case ITEM_WATER_ELEMENT:
                     flag = MACHI_SET_4;
                     break;
-                case 0x43:
+                case ITEM_WIND_ELEMENT:
                     flag = MACHI_SET_5;
                     break;
                 default:
                     flag = -1;
                     break;
             }
+            // TODO
             item = get_item_for_global_flag(flag);
             InitItemGetSequence(get_item_id(item), get_item_subvalue(item), 1);
         }
