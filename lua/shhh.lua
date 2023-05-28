@@ -37,6 +37,7 @@ end
 
 if s:connect('127.0.0.1', 9000) then
     console:log('connected')
+    s:send(string.pack('<I4', 0x20<<24))
 else
     console:log('connection error')
 end
