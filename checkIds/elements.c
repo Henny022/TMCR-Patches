@@ -47,6 +47,7 @@ void FourElements_Action2(FourElementsEntity* this) {
                     break;
                 default:
                     flag = -1;
+                    break;
             }
             item = get_item_for_global_flag(flag);
             InitItemGetSequence(get_item_id(item), get_item_subvalue(item), 1);
