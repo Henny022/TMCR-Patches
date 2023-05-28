@@ -19,7 +19,7 @@ void OpenSmallChest(u32 pos, u32 layer) {
     }
     if ((layer >> 1) == ((u32)(t->_6 << 31) >> 31)) {
         if (found) {
-            int item = get_item_for_global_flag(local2global(t->localFlag));
+            int item = get_item_for_global_flag_with_default(local2global(t->localFlag), get_item_from_value_and_subvalue(t->_2, t->_3));
             //set_item_global_flag(local2global(t->localFlag));
             SetLocalFlag(t->localFlag);
             CreateItemEntity(get_item_id(item), get_item_subvalue(item), 0);
@@ -37,7 +37,7 @@ void sub_08084074(u32 param_1) {
     if (tileEntity != NULL) {
         for (; tileEntity->type != 0; tileEntity++) {
             if ((tileEntity->type == BIG_CHEST) && (param_1 == tileEntity->localFlag)) {
-                int item = get_item_for_global_flag(local2global(tileEntity->localFlag));
+                int item = get_item_for_global_flag_with_default(local2global(tileEntity->localFlag), get_item_from_value_and_subvalue(tileEntity->_2, tileEntity->_3));
                 //set_item_global_flag(local2global(t->localFlag));
                 CreateItemEntity(get_item_id(item), get_item_subvalue(item), 0);
                 return;
