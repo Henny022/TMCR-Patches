@@ -50,8 +50,7 @@ void FourElements_Action2(FourElementsEntity* this) {
                     flag = -1;
                     break;
             }
-            // TODO
-            item = get_item_for_global_flag(flag);
+            item = get_item_for_global_flag_with_default(flag, super->type);
             InitItemGetSequence(get_item_id(item), get_item_subvalue(item), 1);
         }
         sub_0808C650(super, 1);

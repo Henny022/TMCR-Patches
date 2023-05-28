@@ -1,8 +1,6 @@
 #include "base.h"
 #include "protocol.h"
 
-static const int unknown_item_value = 0xFFFF;
-
 int peek_item_for_global_flag(int flag)
 {
     protocol_send(packet(1, flag));
@@ -25,16 +23,4 @@ int get_item_for_global_flag(int flag)
         r = protocol_recv(FALSE);
     }
     return packet_value(r);
-}
-
-int peek_item_for_global_flag_with_default(int flag, int default_value) {
-    int item = peek_item_for_global_flag(flag);
-    if (item == unknown_item_value) item = default_value;
-    return item;
-}
-
-int get_item_for_global_flag_with_default(int flag, int default_value) {
-    int item = get_item_for_global_flag(flag);
-    if (item == unknown_item_value) item = default_value;
-    return item;
 }

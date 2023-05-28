@@ -3,9 +3,20 @@
 
 int peek_item_for_global_flag(int flag);
 int get_item_for_global_flag(int flag);
-int peek_item_for_global_flag_with_default(int flag, int default_value);
-int get_item_for_global_flag_with_default(int flag, int default_value);
 
+#define unknown_item_value 0xFFFF
+
+inline int peek_item_for_global_flag_with_default(int flag, int default_value) {
+    int item = peek_item_for_global_flag(flag);
+    if (item == unknown_item_value) item = default_value;
+    return item;
+}
+
+inline int get_item_for_global_flag_with_default(int flag, int default_value) {
+    int item = get_item_for_global_flag(flag);
+    if (item == unknown_item_value) item = default_value;
+    return item;
+}
 
 inline int get_item_id(int item)
 {

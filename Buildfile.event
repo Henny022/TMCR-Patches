@@ -40,7 +40,10 @@ WORD gScriptIO
 
 #include "main.cevent"
 #include "debug/mgba.cevent"
+
 #include "qol/game_code.event"
+#include "qol/item_select.cevent"
+
 #include "sram.event"
 #include "qol/autotext.cevent"
 #include "qol/fileselect.cevent"
@@ -50,10 +53,12 @@ WORD gScriptIO
 #include "checkIds/protocol_uart.cevent"
 //#include "checkIds/protocol_scriptio.cevent"
 #include "checkIds/base_protocol.cevent"
+//#include "checkIds/base.cevent"
 
 #include "checkIds/chests.cevent"
 #include "checkIds/item_on_ground.cevent"
 #include "checkIds/heartContainer.cevent"
+#include "checkIds/elements.cevent"
 
 #include "shhh/shhh.event"
 #include "test.cevent"
