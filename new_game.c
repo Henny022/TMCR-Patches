@@ -24,8 +24,8 @@ u32 FinalizeSave(void) {
         gSave.invalid = 0;
         gSave.initialized = 1;
         gSave.global_progress = 1;
-        gSave.stats.health = 160;
-        gSave.stats.maxHealth = 160;
+        gSave.stats.health = 3*8;
+        gSave.stats.maxHealth = 3*8;
         gSave.saved_status.area_next = starting_area;
         gSave.saved_status.room_next = starting_room;
         gSave.saved_status.start_anim = starting_anim_state;
@@ -39,7 +39,7 @@ u32 FinalizeSave(void) {
         }
         for (u32 i = 0; i < n_starting_items; i++)
         {
-            GiveItem(starting_items[i], 1);
+            GiveItem(starting_items[i], 0);
         }
         for (u32 i = 0; i < n_starting_fusions; i++)
         {

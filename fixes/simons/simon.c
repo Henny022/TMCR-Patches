@@ -8,7 +8,7 @@ extern Entity* gUnk_080F0CB8[15];
 extern u8* gUnk_080F0E08[];
 extern TileEntity gUnk_080F0E1C[];
 
-extern void sub_0804B3C4(TileEntity*);
+extern void LoadSmallChestTile2(TileEntity*);
 
 void sub_StateChange_SimonsSimulation_Main(void) {
     u32 r;
@@ -33,6 +33,6 @@ void sub_StateChange_SimonsSimulation_Main(void) {
         //SetLocalFlag(0xC6); don't do this - instead have the flag be set on chest open
         index = 0xE;
     }
-    sub_0804B3C4(&gUnk_080F0E1C[index]);
+    LoadSmallChestTile2(&gUnk_080F0E1C[index]);
     SoundReq(SONG_STOP_BGM);
 }
