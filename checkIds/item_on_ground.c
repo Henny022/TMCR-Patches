@@ -97,17 +97,3 @@ bool32 sub_08081420(Entity* this) {
         return FALSE;
     }
 }
-
-void sub_08081404(Entity* this, u32 arg1) {
-    if(this->id == GROUND_ITEM){
-        if (arg1 && this->field_0x86.HWORD) {
-            SetFlag(this->field_0x86.HWORD);
-        }
-    }else{
-        if (arg1 && this->field_0x86.HWORD) {
-            SetFlag(this->field_0x86.HWORD);
-        }
-    }
-
-    DeleteThisEntity();
-}

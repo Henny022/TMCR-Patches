@@ -8,13 +8,9 @@ void protocol_send(u32 packet)
 
 u32 protocol_recv(bool32 request)
 {
-    (void) request;
-    if(gScriptIO.rx.status)
-    {
-        return scriptio_recv();
-    }
-    else
+    if(request && !gScriptIO.rx.status)
     {
         return packet(0x7f, 0);
     }
+    return scriptio_recv();
 }

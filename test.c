@@ -7,6 +7,8 @@
 #include <item.h>
 #include <flags.h>
 #include <asm.h>
+#include <kinstone.h>
+#include <common.h>
 
 void UpdateGlobalProgress(void) {
     gSave.global_progress = 7;
@@ -91,6 +93,9 @@ void sub_0804E150(void) {
         }
     }
 }
+
+extern EntityData gUnk_080F9FA8;
+extern EntityData gUnk_080F9F88;
 
 void sub_StateChange_TreeInteriors_WitchHut(void) {
     if (!GetInventoryValue(ITEM_QST_MUSHROOM)) {

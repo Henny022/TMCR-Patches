@@ -10,13 +10,12 @@ typedef struct {
 //extern volatile scriptio_t gScriptIO;
 #define gScriptIO (*(volatile scriptio_t*)0x02038560)
 
-// blocking send
+// nonblocking send
 inline void scriptio_send(u32 data)
 {
     while (gScriptIO.tx.status);
     gScriptIO.tx.data = data;
     gScriptIO.tx.status = TRUE;
-    while (gScriptIO.tx.status);
 }
 
 // blocking receive

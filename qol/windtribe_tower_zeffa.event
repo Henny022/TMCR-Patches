@@ -1,0 +1,2 @@
+//allow link to use the ocarina in the room right before palace of winds
+PUSH; ORG 0x12752C; BYTE 1; POP

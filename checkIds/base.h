@@ -60,3 +60,8 @@ inline int flag2global(int flag)
     }
     return -1;
 }
+
+inline int global2flag(int flag)
+{
+    return (1 << 0xe) | flag;
+}

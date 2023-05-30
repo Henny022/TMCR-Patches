@@ -1,0 +1,25 @@
+#include "quickwarp.cevent"
+
+PUSH
+// english
+ORG 0x9aef11
+String(Quickwarp)
+BYTE 0
+BYTE 0
+// french
+ORG 0x9f77fb
+String(Quickw)
+BYTE 0
+// german
+ORG 0xa3f2a0
+String(Quickw.)
+BYTE 0
+// italian
+ORG 0xac3bf0
+String(Quickwarp)
+BYTE 0
+// spanish
+ORG 0xa82207
+String(Quickwarp.)
+BYTE 0
+POP

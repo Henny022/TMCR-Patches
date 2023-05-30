@@ -58,37 +58,65 @@ void PauseMenu_ItemMenu_Update(void) {
                 Item selected_item = gPauseMenu.items[menuSlot];
                 switch (selected_item) {
                     case ITEM_RED_SWORD:
-                        selected_item = ITEM_BLUE_SWORD;
-                        break;
+                        if(GetInventoryValue(ITEM_BLUE_SWORD)){
+                            selected_item = ITEM_BLUE_SWORD;
+                            break;
+                        }
+                        // fallthrough
                     case ITEM_BLUE_SWORD:
-                        selected_item = ITEM_FOURSWORD;
-                        break;
+                        if(GetInventoryValue(ITEM_FOURSWORD)){
+                            selected_item = ITEM_FOURSWORD;
+                            break;
+                        }
+                        // fallthrough
                     case ITEM_FOURSWORD:
-                        selected_item = ITEM_RED_SWORD;
+                        if(GetInventoryValue(ITEM_RED_SWORD)){
+                            selected_item = ITEM_RED_SWORD;
+                            break;
+                        }
+                        if(GetInventoryValue(ITEM_BLUE_SWORD)){
+                            selected_item = ITEM_BLUE_SWORD;
+                        }
                         break;
                     case ITEM_BOMBS:
-                        selected_item = ITEM_REMOTE_BOMBS;
+                        if(GetInventoryValue(ITEM_REMOTE_BOMBS)){
+                            selected_item = ITEM_REMOTE_BOMBS;
+                        }
                         break;
                     case ITEM_REMOTE_BOMBS:
-                        selected_item = ITEM_BOMBS;
+                        if(GetInventoryValue(ITEM_BOMBS)){
+                            selected_item = ITEM_BOMBS;
+                        }
                         break;
                     case ITEM_BOW:
-                        selected_item = ITEM_LIGHT_ARROW;
+                        if(GetInventoryValue(ITEM_LIGHT_ARROW)){
+                            selected_item = ITEM_LIGHT_ARROW;
+                        }
                         break;
                     case ITEM_LIGHT_ARROW:
-                        selected_item = ITEM_BOW;
+                        if(GetInventoryValue(ITEM_BOW)){
+                            selected_item = ITEM_BOW;
+                        }
                         break;
                     case ITEM_BOOMERANG:
-                        selected_item = ITEM_MAGIC_BOOMERANG;
+                        if(GetInventoryValue(ITEM_MAGIC_BOOMERANG)){
+                            selected_item = ITEM_MAGIC_BOOMERANG;
+                        }
                         break;
                     case ITEM_MAGIC_BOOMERANG:
-                        selected_item = ITEM_BOOMERANG;
+                        if(GetInventoryValue(ITEM_BOOMERANG)){
+                            selected_item = ITEM_BOOMERANG;
+                        }
                         break;
                     case ITEM_SHIELD:
-                        selected_item = ITEM_MIRROR_SHIELD;
+                        if(GetInventoryValue(ITEM_MIRROR_SHIELD)){
+                            selected_item = ITEM_MIRROR_SHIELD;
+                        }
                         break;
                     case ITEM_MIRROR_SHIELD:
-                        selected_item = ITEM_SHIELD;
+                        if(GetInventoryValue(ITEM_SHIELD)){
+                            selected_item = ITEM_SHIELD;
+                        }
                         break;
                     default:
                         break;

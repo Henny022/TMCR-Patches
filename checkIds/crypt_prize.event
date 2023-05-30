@@ -1,0 +1,10 @@
+PUSH
+ORG 0xda58
+SHORT 0x0c8b; POIN2 script_crypt_prize_hack // JumpAbsoluteUninterruptible script_crypt_prize_hack
+script_crypt_prize_return:
+POP
+
+script_crypt_prize_hack:
+SHORT 0x0c8c 0x332 0x6d5c // GiveItemForFlag FLAG_BANK_3+OUBO_KAKERA ITEM_KINSTONE:VEIL_FALLS
+SHORT 0x0434 // WaitPlayerGetItem
+SHORT 0x0c8b; POIN2 script_crypt_prize_return // JumpAbsoluteUninterruptible script_crypt_prize_return
