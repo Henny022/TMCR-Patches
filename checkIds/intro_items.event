@@ -1,3 +1,4 @@
+// overwrite entity list 0 for ROOM_HOUSE_INTERIORS_2_LINKS_HOUSE_BEDROOM
 PUSH
 ORG 0xf2854
 POIN links_bedroom_entities_0
@@ -7,32 +8,21 @@ ALIGN 16
 links_bedroom_entities_0:
 BYTE 0x6 0x4f 0x69 0x00; WORD 0; SHORT 0 0; POIN script_intro_items
 BYTE 0xFF
+
+#define JumpOffset(target) "(target - (CURRENTOFFSET+2))"
+
 ALIGN 4
 script_intro_items:
-SHORT 0x0814 0xa01 //Check Global Flag 0xa01
-SHORT 0x0804 0x16 //JumpIf end
-SHORT 0x0c8c 0xa01 0xd // GiveItemForFlag FLAG_BANK_CUSTOM+INTRO_ITEM_1 ITEM_SHIELD
-SHORT 0x0434 // WaitPlayerGetItem
-SHORT 0x0c8c 0xa02 0x1 // GiveItemForFlag FLAG_BANK_CUSTOM+INTRO_ITEM_2 ITEM_SMITHS_SWORD
-SHORT 0x0434 // WaitPlayerGetItem
-SHORT 0x082d 0xa01 //Set Global Flag
-SHORT 0xffff //end
-
-/*
-.macro entity_raw type:req, subtype:req, collision=0, unknown:req, paramA=0, paramB=0, x=0, y=0, paramC=0
-	.byte \type | ((\collision) << 4)
-	.byte \unknown
-	.byte \subtype
-	.byte \paramA
-	.4byte \paramB
-	.2byte \x
-	.2byte \y
-	.4byte \paramC
-	.endm
-
-	.macro object_raw subtype:req, collision=0, unknown=0xf, paramA=0, paramB=0, x=0, y=0, paramC=0
-	entity_raw type=6, subtype=\subtype, collision=\collision, unknown=\unknown, paramA=\paramA, paramB=\paramB, x=\x, y=\y, paramC=\paramC
-	.endm
-
-	object_raw subtype=0x69, unknown=0x4f, paramC=script_EzloTalkPoW
-*/
+	CheckGlobalFlag 2561
+	JumpIf JumpOffset(script_intro_items_item2)
+	GiveItemForFlag 2561 0xd // FLAG_BANK_CUSTOM+INTRO_ITEM_1 ITEM_SHIELD
+	WaitPlayerGetItem
+	SetGlobalFlag 2561
+script_intro_items_item2:
+	CheckGlobalFlag 2562
+	JumpIf JumpOffset(script_intro_items_end)
+	GiveItemForFlag 2562 0x1 // FLAG_BANK_CUSTOM+INTRO_ITEM_2 ITEM_SMITHS_SWORD
+	WaitPlayerGetItem
+	SetGlobalFlag 2562
+script_intro_items_end:
+	ScriptEnd
