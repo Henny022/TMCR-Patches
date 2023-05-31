@@ -73,6 +73,7 @@ WORD gScriptIO
 #include "checkIds/intro_items.event"
 #include "checkIds/golden_enemies.cevent"
 #include "checkIds/dojo.event"
+#include "checkIds/cafe_lady.event"
 
 #include "shhh/shhh.event"
 #include "test.cevent"
