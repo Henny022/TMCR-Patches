@@ -16,6 +16,7 @@
 #define BL(pointer) "SHORT (((BLRange(pointer)>>11)&0x7ff)|0xf000) ((BLRange(pointer)&0x7ff)|0xf800);"
 
 #define ITEM(id, subvalue) (id|(subvalue<<8))
+#define JumpOffset(target) "(target - (CURRENTOFFSET+2))"
 
 // IWRAM
 
@@ -71,6 +72,7 @@ WORD gScriptIO
 #include "checkIds/crypt_prize.event"
 #include "checkIds/intro_items.event"
 #include "checkIds/golden_enemies.cevent"
+#include "checkIds/dojo.event"
 
 #include "shhh/shhh.event"
 #include "test.cevent"

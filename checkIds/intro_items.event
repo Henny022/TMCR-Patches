@@ -9,8 +9,6 @@ links_bedroom_entities_0:
 BYTE 0x6 0x4f 0x69 0x00; WORD 0; SHORT 0 0; POIN script_intro_items
 BYTE 0xFF
 
-#define JumpOffset(target) "(target - (CURRENTOFFSET+2))"
-
 ALIGN 4
 script_intro_items:
 	CheckGlobalFlag 2561

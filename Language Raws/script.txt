@@ -23,6 +23,11 @@ SetGlobalFlag, 0, 2, -game:FE8 -indexMode:16 -offsetMod:2
     0x082d, 0, 1, -fixed
     flag, 1, 1
 
+## Jump offset
+Jump, 0, 2, -game:FE8 -indexMode:16 -offsetMod:2
+    0x0803, 0, 1, -fixed
+    offset, 1, 1
+
 ## JumpIf offset
 JumpIf, 0, 2, -game:FE8 -indexMode:16 -offsetMod:2
     0x0804, 0, 1, -fixed

@@ -1,0 +1,7 @@
+#include "dojo.cevent"
+
+// skip teaching the skill
+PUSH
+ORG 0x16274
+Jump JumpOffset(0x16366)
+POP
