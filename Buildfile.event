@@ -15,6 +15,8 @@
 #define BLRange(pointer) "((pointer - (CURRENTOFFSET + 4))>>1)"
 #define BL(pointer) "SHORT (((BLRange(pointer)>>11)&0x7ff)|0xf000) ((BLRange(pointer)&0x7ff)|0xf800);"
 
+#define ITEM(id, subvalue) (id|(subvalue<<8))
+
 // IWRAM
 
 // EWRAM
@@ -43,28 +45,39 @@ WORD gScriptIO
 
 #include "qol/game_code.event"
 #include "qol/item_select.cevent"
+#include "qol/quickwarp.event"
 
 #include "sram.event"
 #include "qol/autotext.cevent"
 #include "qol/fileselect.cevent"
+#include "qol/figurine_house.event"
+#include "qol/windtribe_tower_zeffa.event"
 #include "new_game.cevent"
 
 #include "io/uart.cevent"
-#include "checkIds/protocol_uart.cevent"
-//#include "checkIds/protocol_scriptio.cevent"
-#include "checkIds/base_protocol.cevent"
-//#include "checkIds/base.cevent"
+//#include "checkIds/protocol_uart.cevent"
+#include "checkIds/protocol_scriptio.cevent"
+//#include "checkIds/base_protocol.cevent"
+#include "checkIds/base.cevent"
+
+#include "features/keysanity.cevent"
+#include "features/script/install.event"
 
 #include "checkIds/chests.cevent"
 #include "checkIds/item_on_ground.cevent"
 #include "checkIds/heartContainer.cevent"
 #include "checkIds/elements.cevent"
+#include "checkIds/zeffa.cevent"
+#include "checkIds/crypt_prize.event"
+#include "checkIds/intro_items.event"
+#include "checkIds/golden_enemies.cevent"
 
 #include "shhh/shhh.event"
 #include "test.cevent"
 
 #include "fixes/simons/simon.event"
 #include "fixes/simons/simon.cevent"
+#include "fixes/mulldozers.cevent"
 
 #include "modules.cevent"
 
