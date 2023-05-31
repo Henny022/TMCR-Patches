@@ -19,7 +19,7 @@ CFLAGS += -mcpu=arm7tdmi -mthumb -mlong-calls
 CFLAGS += -I $(REPO)/tools/agbcc/include -I $(REPO)/include -nostdinc
 CFLAGS += -undef -DEU -DREVISION=0 -DLANGUAGE=ENGLISH
 
-tmcr.gba: Buildfile.event tmc_eu.gba $(shell $(SCANINC) Buildfile.event)
+tmcr.gba: Buildfile.event tmc_eu.gba $(shell $(SCANINC) Buildfile.event) Language\ Raws/Data.txt Language\ Raws/Pointer.txt Language\ Raws/CheckIds.txt Language\ Raws/script.txt
 	cp tmc_eu.gba $@
 	mono ColorzCore.exe A FE8 -output:$@ -input:$<
 
