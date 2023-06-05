@@ -1,0 +1,46 @@
+#include "melari.cevent"
+
+ALIGN 16
+melari_replacement_item_on_ground:
+BYTE 0x16 0xf 0 2; WORD 0; SHORT 0x188 0x148; SHORT 0 0xc025;
+BYTE 0xFF
+
+
+//todo: make this actually work
+/*
+// change the check for fire element to a check for gleerock being defeated
+PUSH
+ORG 0xd04a
+CheckGlobalFlag 0xb // MACHI_SET_2
+ORG 0xd066
+CheckGlobalFlag 0xb // MACHI_SET_2
+ORG 0xd0be
+CheckGlobalFlag 0xb // MACHI_SET_2
+ORG 0xd2a6
+CheckGlobalFlag 0xb // MACHI_SET_2
+ORG 0xd30e
+CheckGlobalFlag 0xb // MACHI_SET_2
+POP
+
+//check for custom flag 37 instead of having the green sword
+PUSH
+ORG 0xd05e
+CheckGlobalFlag 2597
+ORG 0xd0a0
+CheckGlobalFlag 2597
+POP
+
+//randomize his item
+PUSH
+ORG 0xd110
+POIN script_player_get_white_sword_randomized
+POP
+
+ALIGN 2
+script_player_get_white_sword_randomized:
+    //Call 0x0007d975 // EnablePauseMenu
+    //GiveItemForFlag (0xa00+37) 2
+    //WaitPlayerGetItem
+    JumpAbsoluteUninterruptible 0x0000d27c
+
+*/

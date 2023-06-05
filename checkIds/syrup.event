@@ -1,0 +1,8 @@
+#include "syrup.cevent"
+
+PUSH
+ORG 0xf94dc
+BYTE 0x78
+ORG 0xf94e0
+SHORT 60 0xc024
+POP

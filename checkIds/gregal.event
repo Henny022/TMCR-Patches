@@ -1,0 +1,37 @@
+#include "gregal.cevent"
+
+PUSH
+ORG 0x14c5a
+JumpAbsoluteUninterruptible script_gregal_give_item_1
+script_gregal_give_item_1_return:
+POP
+
+ALIGN 2
+script_gregal_give_item_1:
+GiveItemForFlag (101+0x200) 0x643f // (SORA_ELDER_TALK1ST+FLAG_BANK_2) (Shells:100)
+WaitPlayerGetItem
+JumpAbsoluteUninterruptible script_gregal_give_item_1_return
+
+PUSH
+ORG 0x14cba
+JumpAbsoluteUninterruptible script_gregal_give_item_2
+script_gregal_give_item_2_return:
+POP
+
+script_gregal_give_item_2:
+GiveItemForFlag (102+0x200) 0x0a // (SORA_ELDER_TALK2ND+FLAG_BANK_2) ITEM_LIGHT_ARROWS
+WaitPlayerGetItem
+JumpAbsoluteUninterruptible script_gregal_give_item_2_return
+
+
+// remove the door blocking npc
+PUSH
+ORG 0xf58c0
+BYTE 0xFF
+POP
+
+// then add them again somewhere else
+ALIGN 16
+windtribe_tower_door_blocker:
+BYTE 0x07 0x4f 0x49 0x05 0x06 0x04 0x00 0x00 0x88 0x00 0xfc 0x00 0x70 0x4a 0x01 0x08
+BYTE 0xff

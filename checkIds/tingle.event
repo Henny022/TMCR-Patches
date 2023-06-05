@@ -1,0 +1,11 @@
+PUSH
+ORG 0x16938+22*2
+JumpAbsoluteUninterruptible script_tingle_give_item
+script_tingle_return:
+POP
+
+ALIGN 2
+script_tingle_give_item:
+GiveItemForFlag 58 0x3d
+WaitPlayerGetItem
+JumpAbsoluteUninterruptible script_tingle_return

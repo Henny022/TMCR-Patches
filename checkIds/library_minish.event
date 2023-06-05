@@ -1,0 +1,18 @@
+PUSH
+ORG 0xe7bc
+JumpAbsoluteUninterruptible script_library_minish_give_item
+script_library_minish_return:
+POP
+
+ALIGN 2
+script_library_minish_give_item:
+GiveItemForFlag 632 0x57 // (LOCAL_FLAG_BANK2 + KHOUSE51_00) RUPEE50
+WaitPlayerGetItem
+JumpAbsoluteUninterruptible script_library_minish_return
+
+//todo split. Also fix, because wtf is this broken (set flag 41 instead as a workaround)
+//don't make the minish in Dr. Lefts rafters check for book quest start
+//PUSH
+//ORG 0xe7fe
+//SHORT 0x083b 0x0080 0x083b 0x0080 // 2 2 length nops
+//POP

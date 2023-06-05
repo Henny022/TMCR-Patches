@@ -1,0 +1,11 @@
+PUSH
+ORG 0xe468
+JumpAbsoluteUninterruptible script_stone_daltus_give_item
+script_stone_daltus_return:
+POP
+
+ALIGN 2
+script_stone_daltus_give_item:
+GiveItemForFlag (0x71+0x8c0) 0x53
+WaitPlayerGetItem
+JumpAbsoluteUninterruptible script_stone_daltus_return

@@ -13,9 +13,19 @@ GiveItemForFlag, 0, 3, -game:FE8 -indexMode:16 -offsetMod:2
 WaitPlayerGetItem, 0, 1, -game:FE8 -indexMode:16 -offsetMod:2
     0x0434, 0, 1, -fixed
 
+## CheckLocalFlag flag
+CheckLocalFlag, 0, 2, -game:FE8 -indexMode:16 -offsetMod:2
+    0x0812, 0, 1, -fixed
+    flag, 1, 1
+
 ## CheckGlobalFlag flag
 CheckGlobalFlag, 0, 2, -game:FE8 -indexMode:16 -offsetMod:2
     0x0814, 0, 1, -fixed
+    flag, 1, 1
+
+## SetLocalFlag flag
+SetLocalFlag, 0, 2, -game:FE8 -indexMode:16 -offsetMod:2
+    0x082a, 0, 1, -fixed
     flag, 1, 1
 
 ## SetGlobalFlag flag
@@ -32,6 +42,84 @@ Jump, 0, 2, -game:FE8 -indexMode:16 -offsetMod:2
 JumpIf, 0, 2, -game:FE8 -indexMode:16 -offsetMod:2
     0x0804, 0, 1, -fixed
     offset, 1, 1
+
+## JumpIfNot offset
+JumpIfNot, 0, 2, -game:FE8 -indexMode:16 -offsetMod:2
+    0x0805, 0, 1, -fixed
+    offset, 1, 1
+
+## BeginBlock
+BeginBlock, 0, 1, -game:FE8 -indexMode:16 -offsetMod:2
+    0x0401, 0, 1, -fixed
+
+## EndBlock
+EndBlock, 0, 1, -game:FE8 -indexMode:16 -offsetMod:2
+    0x0402, 0, 1, -fixed
+
+## SetAnimationState state
+SetAnimationState, 0, 2, -game:FE8 -indexMode:16 -offsetMod:2
+    0x0861, 0, 1, -fixed
+    state, 1, 1
+
+## Call function
+Call, 0, 3, -game:FE8 -indexMode:16 -offsetMod:2
+    0x0c0b, 0, 1, -fixed
+    function, 1, 2, -pointer
+
+## CallWithArg function arg
+CallWithArg, 0, 5, -game:FE8 -indexMode:16 -offsetMod:2
+    0x140c, 0, 1, -fixed
+    function, 1, 2, -pointer
+    arg, 3, 2
+
+## DoPostScriptAction action
+DoPostScriptAction, 0, 2, -game:FE8 -indexMode:16 -offsetMod:2
+    0x0879, 0, 1, -fixed
+    action, 1, 1
+
+## CheckEntityInteractType
+CheckEntityInteractType, 0, 1, -game:FE8 -indexMode:16 -offsetMod:2
+    0x0418, 0, 1, -fixed
+
+## SetPlayerIdle
+SetPlayerIdle, 0, 1, -game:FE8 -indexMode:16 -offsetMod:2
+    0x0443, 0, 1, -fixed
+
+## EnablePlayerControl
+EnablePlayerControl, 0, 1, -game:FE8 -indexMode:16 -offsetMod:2
+    0x0444, 0, 1, -fixed
+
+## CheckKinstoneFused fusion
+CheckKinstoneFused, 0, 2, -game:FE8 -indexMode:16 -offsetMod:2
+    0x081d, 0, 1, -fixed
+    fusion, 1, 1
+
+## MessageFromTargetPos bank text pos
+MessageFromTargetPos, 0, 6, -game:FE8 -indexMode:8 -offsetMod:2
+    0x0c5c, 0, 2, -fixed
+    bank, 2, 1
+    text, 3, 1
+    pos, 4, 2
+
+## Wait frames
+Wait, 0, 2, -game:FE8 -indexMode:16 -offsetMod:2
+    0x0831, 0, 1, -fixed
+    frames, 1, 1
+
+## WaitUntilTextboxCloses
+WaitUntilTextboxCloses, 0, 1, -game:FE8 -indexMode:16 -offsetMod:2
+    0x0459, 0, 1, -fixed
+
+## Nop2
+Nop2, 0, 2, -game:FE8 -indexMode:16 -offsetMod:2
+    0x083b, 0, 1, -fixed
+    0x0101, 0, 1, -fixed
+
+
+## SetSyncFlag flags
+SetSyncFlag, 0, 3, -game:FE8 -indexMode:16 -offsetMod:2
+    0x0c28, 0, 1, -fixed
+    flags, 1, 2
 
 ## ScriptEnd
 ScriptEnd, 0, 1, -game:FE8 -indexMode:16 -offsetMod:2

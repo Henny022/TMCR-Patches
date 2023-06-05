@@ -1,0 +1,13 @@
+#include "percy.cevent"
+
+PUSH
+ORG 0x123d4
+JumpAbsoluteUninterruptible moblin_lady_give_item
+moblin_lady_return:
+POP
+
+ALIGN 2
+moblin_lady_give_item:
+GiveItemForFlag (66+0x200) 0x57
+WaitPlayerGetItem
+JumpAbsoluteUninterruptible moblin_lady_return

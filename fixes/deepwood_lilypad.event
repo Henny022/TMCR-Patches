@@ -1,0 +1,5 @@
+// make the lilypad not unload if you have flippers
+PUSH
+ORG 0x0ded9b
+BYTE 0
+POP

@@ -6,7 +6,7 @@
 extern void(*const sPlayerActions[])(Entity*);
 
 void DoPlayerAction(Entity* this) {
-    if (this->action==1)
+    if (this->action==1 /*&& gPlayerState.controlMode == CONTROL_ENABLED*/)
     {
         u32 t = protocol_recv(TRUE);
         u32 cmd = packet_type(t);

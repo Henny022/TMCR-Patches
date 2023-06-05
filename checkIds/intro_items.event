@@ -11,6 +11,7 @@ BYTE 0xFF
 
 ALIGN 4
 script_intro_items:
+	SetPlayerIdle
 	CheckGlobalFlag 2561
 	JumpIf JumpOffset(script_intro_items_item2)
 	GiveItemForFlag 2561 0xd // FLAG_BANK_CUSTOM+INTRO_ITEM_1 ITEM_SHIELD
@@ -23,4 +24,6 @@ script_intro_items_item2:
 	WaitPlayerGetItem
 	SetGlobalFlag 2562
 script_intro_items_end:
+	//Call EnablePauseMenu
+	EnablePlayerControl
 	ScriptEnd

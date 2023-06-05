@@ -1,0 +1,9 @@
+//make minish village stuff (festari and gentari) check for deepwood instead of earth element
+#include "festari.cevent"
+
+PUSH
+ORG 0xc710
+CheckGlobalFlag 0x2
+ORG 0xc822
+CheckGlobalFlag 0x2
+POP

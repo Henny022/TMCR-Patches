@@ -19,6 +19,11 @@ CFLAGS += -mcpu=arm7tdmi -mthumb -mlong-calls
 CFLAGS += -I $(REPO)/tools/agbcc/include -I $(REPO)/include -nostdinc
 CFLAGS += -undef -DEU -DREVISION=0 -DLANGUAGE=ENGLISH
 
+ASFLAGS := -mcpu=arm7tdmi -mthumb
+ASFLAGS += -I $(REPO)/build/EU -I $(REPO)/asm/macros
+
+.DELETE_ON_ERROR:
+
 tmcr.gba: Buildfile.event tmc_eu.gba $(shell $(SCANINC) Buildfile.event) Language\ Raws/Data.txt Language\ Raws/Pointer.txt Language\ Raws/CheckIds.txt Language\ Raws/script.txt
 	cp tmc_eu.gba $@
 	mono ColorzCore.exe A FE8 -output:$@ -input:$<
@@ -26,8 +31,11 @@ tmcr.gba: Buildfile.event tmc_eu.gba $(shell $(SCANINC) Buildfile.event) Languag
 modules.cevent: $(shell ls modules/*)
 	tools/merge_modules.py > $@
 
+EACFLAGS = 
+
+# : EACFLAGS += --allow-unsafe-hooks
 %.cevent: %.o symbols.json
-	eac compile -o $@ $< --symbols symbols.json
+	eac compile -o $@ $< --symbols symbols.json $(EACFLAGS)
 
 %.bin: %.o
 	$(OBJCOPY) -O binary $< $@
@@ -36,7 +44,7 @@ modules.cevent: $(shell ls modules/*)
 	$(CC) $(CFLAGS) -c -o $@ $<
 
 %.o: %.s
-	$(AS) -mcpu=arm7tdmi -c -o $@ $<
+	$(AS) $(ASFLAGS) -c -o $@ $<
 
 symbols.json: $(REPO)/tmc_eu.elf
 	eac extract_symbols -o $@ $<

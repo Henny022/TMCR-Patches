@@ -1,0 +1,6 @@
+
+//fix cave of flames two way key door that's in one room, used to eat two keys at once, by making the door not facing you react to the flag instead of being a small key door
+PUSH
+ORG 0xDF8CB
+BYTE 1
+POP

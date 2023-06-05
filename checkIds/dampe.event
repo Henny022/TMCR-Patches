@@ -1,0 +1,13 @@
+PUSH
+ORG 0x96a8
+JumpAbsoluteUninterruptible dampe_give_item
+ORG CURRENTOFFSET+6
+dampe_return:
+POP
+
+ALIGN 2
+dampe_give_item:
+GiveItemForFlag (105+0x200) 0x3c
+WaitPlayerGetItem
+WaitUntilTextboxCloses
+JumpAbsoluteUninterruptible dampe_return

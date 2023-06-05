@@ -1,0 +1,4 @@
+PUSH
+ORG 0x12310
+CheckGlobalFlag 30 // check DASHBOOTS because it's always set at this point
+POP

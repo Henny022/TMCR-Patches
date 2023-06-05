@@ -1,0 +1,11 @@
+PUSH
+ORG 0x143f0+45*2
+JumpAbsoluteUninterruptible script_dogfood_give_item
+script_dogfood_return:
+POP
+
+ALIGN 2
+script_dogfood_give_item:
+GiveItemForFlag 2582 0x36
+WaitPlayerGetItem
+JumpAbsoluteUninterruptible script_dogfood_return 

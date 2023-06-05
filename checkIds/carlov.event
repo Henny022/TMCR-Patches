@@ -1,0 +1,10 @@
+//just put an item on ground there because we're lazy and no one's going to get all figurines to get the medal out of logic
+PUSH
+ORG 0xf5680+2*4
+POIN list_carlov_enemies
+POP
+
+ALIGN 16
+list_carlov_enemies:
+BYTE 0x16 0xf 0 0x3e; WORD 0; SHORT 0x78 0x58; SHORT 0 0x4059;
+BYTE 0xFF

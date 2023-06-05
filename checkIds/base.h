@@ -56,6 +56,9 @@ inline int flag2global(int flag)
             case 1:
                 // global flag
                 return index;
+            case 3:
+                // custom flag
+                return 0xa00+index;
         }
     }
     return -1;

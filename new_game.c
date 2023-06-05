@@ -3,6 +3,8 @@
 #include <flags.h>
 #include <game.h>
 
+#include "checkIds/base.h"
+
 extern const u32 n_starting_items;
 extern const u8 starting_items[];
 extern const u32 n_starting_flags;
@@ -39,10 +41,14 @@ u32 FinalizeSave(void) {
         }
         for (u32 i = 0; i < n_starting_items; i++)
         {
-            GiveItem(starting_items[i], 0);
+            int item = starting_items[i];
+            GiveItem(get_item_id(item), get_item_subvalue(item));
         }
         for (u32 i = 0; i < n_starting_fusions; i++)
         {
+            if (++gSave.fusedKinstoneCount > 99) {
+                gSave.didAllFusions = 1;
+            }
             WriteBit(gSave.fusedKinstones, starting_fusions[i]);
         }
     }

@@ -1,0 +1,15 @@
+PUSH
+ORG 0x130ec
+JumpAbsoluteUninterruptible script_rem_give_item
+script_rem_give_item_return:
+POP
+//check flag instead of boots in inventory
+PUSH
+ORG 0x12f9c
+CheckGlobalFlag 2595
+POP
+
+script_rem_give_item:
+GiveItemForFlag 2595 0x15
+WaitPlayerGetItem
+JumpAbsoluteUninterruptible script_rem_give_item_return

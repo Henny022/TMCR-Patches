@@ -1,0 +1,39 @@
+PUSH
+ORG 0x10946c
+POIN script_belari
+POP
+
+ALIGN 2
+script_belari:
+    BeginBlock
+    SetAnimationState 0x0004
+    Call 0x5fb19 //sub_08060090, fusion setup
+    DoPostScriptAction 0x000a
+script_belari_wait_for_interact:
+	EndBlock
+	BeginBlock
+	Call 0x5fbe1 //sub_08060158, animation stuff
+	CheckEntityInteractType
+	JumpIfNot JumpOffset(script_belari_wait_for_interact)
+	EndBlock
+	SetPlayerIdle
+	MessageFromTargetPos 31 0x01 0x0000
+	WaitUntilTextboxCloses
+	Wait 0x001e
+//custom flag for the first check
+    CheckGlobalFlag 2581
+    JumpIf JumpOffset(script_belari_item_2)
+    GiveItemForFlag 2581 0x65 // ITEM_BOMBS
+    WaitPlayerGetItem
+    SetGlobalFlag 2581
+script_belari_item_2:
+	CheckKinstoneFused 0x1c
+    JumpIfNot JumpOffset(end)
+	CheckLocalFlag 176
+	JumpIf JumpOffset(end)
+	GiveItemForFlag (176+512) 8 // ITEM_REMOTE_BOMBS
+	WaitPlayerGetItem
+	SetLocalFlag 176
+end:
+	EnablePlayerControl
+	Jump JumpOffset(script_belari)

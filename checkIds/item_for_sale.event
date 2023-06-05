@@ -1,0 +1,29 @@
+#include "item_for_sale.cevent"
+
+// stockwell behind counter check
+PUSH
+ORG 0xf4dcc+0xc
+SHORT 0
+SHORT 0xc016
+POP
+
+// stockwell 80 rupee check
+PUSH
+ORG 0xf4d8c+0xc
+SHORT 80
+SHORT 0x55
+POP
+
+// stockwell 300 rupee check
+PUSH
+ORG 0xf4e6c+0xc
+SHORT 300
+SHORT 0xc017
+POP
+
+// stockwell 600 rupee check
+PUSH
+ORG 0xf4e0c+0xc
+SHORT 600
+SHORT 0x56
+POP

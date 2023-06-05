@@ -1,0 +1,13 @@
+#include "librari_at_lake.cevent"
+
+PUSH
+ORG 0x124ea
+JumpAbsoluteUninterruptible script_librari_at_lake_give_item
+script_librari_at_lake_return:
+POP
+
+ALIGN 2
+script_librari_at_lake_give_item:
+GiveItemForFlag 0x2b3 0x62
+WaitPlayerGetItem
+JumpAbsoluteUninterruptible script_librari_at_lake_return

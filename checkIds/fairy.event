@@ -1,0 +1,32 @@
+PUSH
+ORG (0xb6a0+6+(0xB68E-0xB618))
+JumpAbsoluteUninterruptible script_arrow_fairy_give_item
+SHORT 0
+script_fairy_end:
+POP
+
+ALIGN 2
+script_arrow_fairy_give_item:
+    GiveItemForFlag (158+512) 102 //(LOCAL_BANK_2 + IZUMI_00_FAIRY) ITEM_LARGE_QUIVER
+    SetLocalFlag 158
+    JumpAbsoluteUninterruptible script_fairy_end
+
+PUSH
+ORG 0xb754+47*2
+JumpAbsoluteUninterruptible script_rupee_fairy_give_item
+POP
+
+ALIGN 2
+script_rupee_fairy_give_item:
+    GiveItemForFlag (159+512) 100 //(LOCAL_BANK_2 + IZUMI_01_FAIRY) ITEM_WALLET
+    JumpAbsoluteUninterruptible script_fairy_end
+
+PUSH
+ORG 0xb7bc+6+4+(0xb794-0xb734)
+JumpAbsoluteUninterruptible script_bomb_fairy_give_item
+POP
+
+ALIGN 2
+script_bomb_fairy_give_item:
+    GiveItemForFlag (160+512) 101 //(LOCAL_BANK_2 + IZUMI_02_FAIRY) ITEM_BOMB_BAG
+    JumpAbsoluteUninterruptible script_fairy_end
