@@ -3,7 +3,7 @@
 #include <item.h>
 #include <enemy.h>
 #include "base.h"
-#include "object/itemOnGround.h"
+#include <object/itemOnGround.h>
 
 void OctorokGolden_OnDeath(Entity* this) {
     EnemyCreateDeathFX((Enemy*)this, 0xff, 0);

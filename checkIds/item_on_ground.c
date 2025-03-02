@@ -3,7 +3,7 @@
 #include <item.h>
 #include <itemMetaData.h>
 #include "base.h"
-#include "object/itemOnGround.h"
+#include <object/itemOnGround.h>
 
 extern Entity* GetEmptyEntityByKind(u32 kind);
 extern void RegisterRoomEntity(Entity*, const EntityData*);

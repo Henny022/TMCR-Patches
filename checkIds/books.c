@@ -3,7 +3,7 @@
 #include <room.h>
 #include <item.h>
 #include "base.h"
-#include "object/itemOnGround.h"
+#include <object/itemOnGround.h>
 
 typedef struct {
     /*0x00*/ Entity base;
