@@ -35,10 +35,10 @@ void HandleFileScreenEnter(void) {
     MemClear((void*)VRAM, 0x80); // clear palettes
     MessageInitialize();
     EraseAllEntities();
-    ClearTilemaps();
+    ClearTileMaps();
     ResetPalettes();
     ResetPaletteTable(0);
-    MemClear(&gUnk_0200AF00, sizeof(gUnk_0200AF00));
+    MemClear(&gHUD, sizeof(gHUD));
     MemClear(&gMapDataBottomSpecial, sizeof(gMapDataBottomSpecial));
     gMapDataBottomSpecial.unk3 = 7;
     gMapDataBottomSpecial.unk6 = 0;

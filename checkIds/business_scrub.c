@@ -17,19 +17,33 @@ struct SalesOffering {
     u16 local_flag;
 };
 
+typedef struct {
+    /*0x00*/ Entity base;
+    /*0x68*/ u8 unused1[12];
+    /*0x74*/ u16 unk_74;
+    /*0x76*/ u16 unk_76;
+    /*0x78*/ u16 unk_78;
+    /*0x7a*/ u16 unk_7a;
+    /*0x7c*/ const struct SalesOffering* unk_7c;
+    /*0x80*/ u8 unk_80;
+    /*0x81*/ u8 unk_81;
+    /*0x82*/ u8 unused2[4];
+    /*0x86*/ u16 unk_86;
+} BusinessScrubEntity;
+
 extern void sub_0802922C(Entity* this);
-void sub_080290E0(Entity*, u32);
-bool32 BusinessScrub_CheckRefillFitsBag(Entity*);
+void sub_080290E0(BusinessScrubEntity*, u32);
+bool32 BusinessScrub_CheckRefillFitsBag(BusinessScrubEntity* this);
 extern s32 sub_08056338(void);
-bool32 sub_0802915C(Entity*);
+bool32 sub_0802915C(BusinessScrubEntity* this);
 
 extern const u8 kinstoneTypes[];
 
-void BusinessScrub_Action5(Entity* this) {
-    struct SalesOffering* offer = (struct SalesOffering*)this->field_0x7c.WORD;
+void BusinessScrub_Action5(BusinessScrubEntity* this) {
+    struct SalesOffering* offer = (struct SalesOffering*)this->unk_7c;
     u32 subtype;
 
-    if ((gMessage.doTextBox & 0x7f) == 0 && sub_0802915C(this) && !sub_08056338()) {
+    if ((gMessage.state & MESSAGE_ACTIVE) == 0 && sub_0802915C(this) && !sub_08056338()) {
         if (offer->price <= gSave.stats.rupees) {
             if (BusinessScrub_CheckRefillFitsBag(this)) {
                 /* Bag full. */
@@ -46,9 +60,9 @@ void BusinessScrub_Action5(Entity* this) {
 
                         CreateItemEntity(offer->offeredItem, subtype, 0);
 
-                        this->action = 6;
-                        this->timer = 4;
-                        this->field_0x80.HALF.HI = 0;
+                        super->action = 6;
+                        super->timer = 4;
+                        this->unk_80 = 0;
                         sub_080290E0(this, 3);
 #if defined(USA) || defined(DEMO_USA)
                         SetLocalFlag(KS_B06);
@@ -66,8 +80,8 @@ void BusinessScrub_Action5(Entity* this) {
                                 itemsub = offer->item_subtype;
                             }
                             CreateItemEntity(itemid, itemsub, 0);
-                            this->timer = 4;
-                            sub_0802922C(this);
+                            super->timer = 4;
+                            sub_0802922C(super);
                             return;
                         }
                     case 2: //grip ring
@@ -83,8 +97,8 @@ void BusinessScrub_Action5(Entity* this) {
                                 itemsub = offer->item_subtype;
                             }
                             CreateItemEntity(itemid, itemsub, 0);
-                            this->timer = 8;
-                            sub_0802922C(this);
+                            super->timer = 8;
+                            sub_0802922C(super);
                             return;
                         }
                 }
@@ -96,15 +110,15 @@ void BusinessScrub_Action5(Entity* this) {
         }
     }
 
-    sub_0800445C(this);
-    this->action = 4;
-    this->timer = 48;
+    sub_0800445C(super);
+    super->action = 4;
+    super->timer = 48;
     sub_080290E0(this, 0);
 }
 
 
-bool32 sub_0802915C(Entity* this) {
-    const struct SalesOffering* offer = (const struct SalesOffering*)this->field_0x7c.WORD;
+bool32 sub_0802915C(BusinessScrubEntity* this) {
+    const struct SalesOffering* offer = (const struct SalesOffering*)this->unk_7c;
 
     switch (offer->offeredItem) {
         case ITEM_GRIP_RING:

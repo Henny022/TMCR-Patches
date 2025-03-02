@@ -26,7 +26,7 @@ typedef enum {
 
 void StatusUpdate(u32 status);
 u16 RunTextCommand(TextRender* this);
-void SetDoTextBox(u32 doTextbox);
+void SetState(u32 status);
 
 static inline u16 get_keys(int speed) {
     switch (speed)
@@ -103,7 +103,7 @@ void TextDispUpdate(TextRender* this) {
 
 void TextDispDie(TextRender* this) {
     gMessage.unk = 0;
-    SetDoTextBox(7);
+    SetState(7);
     if ((this->_8e != 1) && (this->_8e == 2 || MESSAGE_PRESS_ANY_ADVANCE_KEYS)) {
         StatusUpdate(MSG_CLOSE);
     }

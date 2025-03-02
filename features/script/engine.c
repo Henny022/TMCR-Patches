@@ -3,6 +3,7 @@
 #include "../../checkIds/base.h"
 
 typedef void (*ScriptCommand)(Entity*, ScriptExecutionContext*);
+
 extern void ScriptCommandNop(Entity* entity, ScriptExecutionContext* context);
 extern void ScriptCommand_BeginBlock(Entity* entity, ScriptExecutionContext* context);
 extern void ScriptCommand_EndBlock(Entity* entity, ScriptExecutionContext* context);
@@ -83,12 +84,12 @@ extern void ScriptCommand_SetVariableToFrame(Entity* entity, ScriptExecutionCont
 extern void ScriptCommand_SetAnimation(Entity* entity, ScriptExecutionContext* context);
 extern void ScriptCommand_TriggerInteract(Entity* entity, ScriptExecutionContext* context);
 extern void ScriptCommand_0807E974(Entity* entity, ScriptExecutionContext* context);
-extern void ScriptCommand_0807E9D4(Entity* entity, ScriptExecutionContext* context);
-extern void ScriptCommand_0807E9DC(Entity* entity, ScriptExecutionContext* context);
-extern void ScriptCommand_0807E9E4(Entity* entity, ScriptExecutionContext* context);
-extern void ScriptCommand_0807E9F0(Entity* entity, ScriptExecutionContext* context);
+extern void ScriptCommand_AddInteractableWhenBigObject(Entity* entity, ScriptExecutionContext* context);
+extern void ScriptCommand_RemoveInteractableObject(Entity* entity, ScriptExecutionContext* context);
+extern void ScriptCommand_AddInteractableWhenBigFuser(Entity* entity, ScriptExecutionContext* context);
+extern void ScriptCommand_UpdateFusion(Entity* entity, ScriptExecutionContext* context);
 extern void ScriptCommand_0807EA4C(Entity* entity, ScriptExecutionContext* context);
-extern void ScriptCommand_0807EA88(Entity* entity, ScriptExecutionContext* context);
+extern void ScriptCommand_AddInteractableFuser(Entity* entity, ScriptExecutionContext* context);
 extern void ScriptCommand_WaitUntilTextboxCloses(Entity* entity, ScriptExecutionContext* context);
 extern void ScriptCommand_MessageFromTarget(Entity* entity, ScriptExecutionContext* context);
 extern void ScriptCommand_MessageNoOverlap(Entity* entity, ScriptExecutionContext* context);
@@ -115,11 +116,11 @@ extern void ScriptCommand_WalkEast(Entity* entity, ScriptExecutionContext* conte
 extern void ScriptCommand_WalkSouth(Entity* entity, ScriptExecutionContext* context);
 extern void ScriptCommand_WalkWest(Entity* entity, ScriptExecutionContext* context);
 extern void ScriptCommand_0807ED24(Entity* entity, ScriptExecutionContext* context);
-extern void ScriptCommand_0807EDD4(Entity* entity, ScriptExecutionContext* context);
-extern void ScriptCommand_0807EE04(Entity* entity, ScriptExecutionContext* context);
-extern void ScriptCommand_0807EE30(Entity* entity, ScriptExecutionContext* context);
-extern void ScriptCommand_0807EEB4(Entity* entity, ScriptExecutionContext* context);
-extern void ScriptCommand_0807EEF4(Entity* entity, ScriptExecutionContext* context);
+extern void ScriptCommand_MoveTo(Entity* entity, ScriptExecutionContext* context);
+extern void ScriptCommand_LookAt(Entity* entity, ScriptExecutionContext* context);
+extern void ScriptCommand_MoveTowardsTarget(Entity* entity, ScriptExecutionContext* context);
+extern void ScriptCommand_MoveToPlayer(Entity* entity, ScriptExecutionContext* context);
+extern void ScriptCommand_MoveToOffset(Entity* entity, ScriptExecutionContext* context);
 extern void ScriptCommand_0807EF3C(Entity* entity, ScriptExecutionContext* context);
 extern void ScriptCommand_DoPostScriptAction(Entity* entity, ScriptExecutionContext* context);
 extern void ScriptCommand_DoPostScriptAction2(Entity* entity, ScriptExecutionContext* context);
@@ -139,6 +140,7 @@ extern void ScriptCommand_CameraTargetEntity(Entity* entity, ScriptExecutionCont
 extern void ScriptCommand_CameraTargetPlayer(Entity* entity, ScriptExecutionContext* context);
 extern void ScriptCommand_SetScrollSpeed(Entity* entity, ScriptExecutionContext* context);
 extern void ScriptCommand_0807F0C8(Entity* entity, ScriptExecutionContext* context);
+
 // custom
 void ScriptCommand_JumpAbsoluteUninterruptible(Entity* entity, ScriptExecutionContext* context) {
     (void) entity;
@@ -242,12 +244,12 @@ void ExecuteScript(Entity* entity, ScriptExecutionContext* context) {
         ScriptCommand_SetAnimation,
         ScriptCommand_TriggerInteract,
         ScriptCommand_0807E974,
-        ScriptCommand_0807E9D4,
-        ScriptCommand_0807E9DC,
-        ScriptCommand_0807E9E4,
-        ScriptCommand_0807E9F0,
+        ScriptCommand_AddInteractableWhenBigObject,
+        ScriptCommand_RemoveInteractableObject,
+        ScriptCommand_AddInteractableWhenBigFuser,
+        ScriptCommand_UpdateFusion,
         ScriptCommand_0807EA4C,
-        ScriptCommand_0807EA88,
+        ScriptCommand_AddInteractableFuser,
         ScriptCommand_WaitUntilTextboxCloses,
         ScriptCommand_MessageFromTarget,
         ScriptCommand_MessageNoOverlap,
@@ -274,11 +276,11 @@ void ExecuteScript(Entity* entity, ScriptExecutionContext* context) {
         ScriptCommand_WalkSouth,
         ScriptCommand_WalkWest,
         ScriptCommand_0807ED24,
-        ScriptCommand_0807EDD4,
-        ScriptCommand_0807EE04,
-        ScriptCommand_0807EE30,
-        ScriptCommand_0807EEB4,
-        ScriptCommand_0807EEF4,
+        ScriptCommand_MoveTo,
+        ScriptCommand_LookAt,
+        ScriptCommand_MoveTowardsTarget,
+        ScriptCommand_MoveToPlayer,
+        ScriptCommand_MoveToOffset,
         ScriptCommand_0807EF3C,
         ScriptCommand_DoPostScriptAction,
         ScriptCommand_DoPostScriptAction2,

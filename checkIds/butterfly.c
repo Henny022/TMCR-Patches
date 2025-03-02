@@ -54,7 +54,7 @@ void ObjectA8(ObjectA8Entity* this) {
             case 0x1e:
             case 0x1f:
                 super->action = 5;
-                super->child = &gPlayerEntity;
+                super->child = &gPlayerEntity.base;
                 {
                     int flag = super->type - ITEM_ARROW_BUTTERFLY + 2577;
                     int item = get_item_for_global_flag_with_default(flag, super->type);
@@ -80,7 +80,7 @@ extern const EntityData gUnk_080FEC28[];
 extern const EntityData gUnk_080FECC8[];
 extern const EntityData gUnk_080FED18[];
 extern const EntityData gUnk_080FED58[];
-extern const void* gUnk_080FED98[];
+extern const void* gLilypadRails[];
 extern const EntityData gUnk_080FEE18[];
 extern const EntityData gUnk_080FEE38[];
 extern const EntityData gUnk_080FEE48[];
@@ -165,7 +165,7 @@ void sub_0801876C(u32 worldEventId, bool32 isKinstoneFused) {
         case WORLD_EVENT_TYPE_11:
             if (isKinstoneFused != 0) {
                 LoadRoomEntity(&gUnk_080FED58[ptr->entity_idx]);
-                gRoomVars.field_0x8c[ptr->entity_idx] = (void*)gUnk_080FED98[ptr->entity_idx];
+                gRoomVars.entityRails[ptr->entity_idx] = (void*)gLilypadRails[ptr->entity_idx];
             }
             break;
         case WORLD_EVENT_TYPE_9:

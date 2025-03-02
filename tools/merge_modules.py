@@ -27,7 +27,7 @@ def main():
                     merged[key] += module[key]
     dump_list(merged['flags'], 'starting_flags', 'SHORT')
     dump_list(merged['fusions'], 'starting_fusions', 'BYTE')
-    dump_list(merged['items'], 'starting_items', 'BYTE')
+    dump_list(merged['items'], 'starting_items', 'SHORT')
 
 
 if __name__ == '__main__':

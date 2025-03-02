@@ -3,10 +3,10 @@
 #include "../checkIds/protocol.h"
 #include "../checkIds/base.h"
 
-extern void(*const sPlayerActions[])(Entity*);
+extern void(*const sPlayerActions[])(PlayerEntity*);
 
-void DoPlayerAction(Entity* this) {
-    if (this->action==1 /*&& gPlayerState.controlMode == CONTROL_ENABLED*/)
+void DoPlayerAction(PlayerEntity* this) {
+    if (super->action==1 /*&& gPlayerState.controlMode == CONTROL_ENABLED*/)
     {
         u32 t = protocol_recv(TRUE);
         u32 cmd = packet_type(t);
@@ -20,5 +20,5 @@ void DoPlayerAction(Entity* this) {
             return;
         }
     }
-    sPlayerActions[this->action](this);
+    sPlayerActions[super->action](this);
 }

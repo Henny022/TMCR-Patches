@@ -6,7 +6,7 @@
 #include "checkIds/base.h"
 
 extern const u32 n_starting_items;
-extern const u8 starting_items[];
+extern const u16 starting_items[];
 extern const u32 n_starting_flags;
 extern const u16 starting_flags[];
 extern const u32 n_starting_fusions;
@@ -46,10 +46,10 @@ u32 FinalizeSave(void) {
         }
         for (u32 i = 0; i < n_starting_fusions; i++)
         {
-            if (++gSave.fusedKinstoneCount > 99) {
-                gSave.didAllFusions = 1;
+            if (++gSave.kinstones.fusedCount > 99) {
+                gSave.kinstones.didAllFusions = 1;
             }
-            WriteBit(gSave.fusedKinstones, starting_fusions[i]);
+            WriteBit(gSave.kinstones.fusedKinstones, starting_fusions[i]);
         }
     }
     if (gSave.name[0] == 0) {

@@ -127,7 +127,7 @@ void PauseMenu_ItemMenu_Update(void) {
                 }
             } break;
             default:
-                switch (gInput.unk4) {
+                switch (gInput.menuScrollKeys) {
                     case DPAD_UP:
                         menuSlot = entry->up;
                         break;
@@ -154,7 +154,7 @@ void PauseMenu_ItemMenu_Update(void) {
             case MENU_SLOT_BOTTLE2:
             case MENU_SLOT_BOTTLE3:
                 if (item != 0) {
-                    item = gSave.saved_status.field_0x24[item - 6];
+                    item = gSave.stats.bottles[item - ITEM_BOTTLE1];
                 }
                 break;
             case MENU_SLOT_SAVE_BUTTON:

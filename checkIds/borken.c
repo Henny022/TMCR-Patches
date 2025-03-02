@@ -12,19 +12,19 @@ typedef struct {
     void* ctx;
 } CutsceneMiscObjectEntity;
 
-void sub_08094FA8(CutsceneMiscObjectEntity* this) {
+void CutsceneMiscObject_Type6(CutsceneMiscObjectEntity* this) {
     switch (super->action) {
         case 0:
             super->action = 1;
             super->frameIndex = 0;
             super->spritePriority.b0 = 7;
-            sub_080787B4(super);
+            AddInteractableCheckableObject(super);
             break;
         case 1:
             if (super->interactType != 0) {
                 super->interactType = 0;
                 super->action = 2;
-                sub_080788E0(super);
+                RemoveInteractableObject(super);
                 gPlayerState.queued_action = PLAYER_EMPTYBOTTLE;
                 gPlayerState.field_0x38 = 54;
             }
@@ -36,7 +36,7 @@ void sub_08094FA8(CutsceneMiscObjectEntity* this) {
             }
             break;
         case 3:
-            if (gPlayerEntity.action != PLAYER_EMPTYBOTTLE) {
+            if (gPlayerEntity.base.action != PLAYER_EMPTYBOTTLE) {
                 super->action = 4;
                 if (!CheckGlobalFlag(BIN_DOGFOOD)) {
                     int item = get_item_for_global_flag_with_default(BIN_DOGFOOD, ITEM_BOTTLE1);

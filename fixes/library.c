@@ -40,7 +40,7 @@ extern u32 gUnk_080DB910;
 
 u32 sub_unk3_TownMinishHoles_LibraryBookshelf(void) {
     if (CheckGlobalFlag(MIZUKAKI_START) && !CheckLocalFlag(MIZUKAKI_BOOK_ALLBACK)) {
-        gRoomVars.field_0x6c[1] = &gUnk_080DB910;
+        gRoomVars.properties[1] = &gUnk_080DB910;
     }
     return 1;
 }

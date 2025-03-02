@@ -3,6 +3,7 @@
 #include <item.h>
 #include <itemMetaData.h>
 #include "base.h"
+#include "object/itemOnGround.h"
 
 extern Entity* GetEmptyEntityByKind(u32 kind);
 extern void RegisterRoomEntity(Entity*, const EntityData*);
@@ -77,10 +78,10 @@ Entity* LoadRoomEntity(const EntityData* dat) {
 
 extern u32 GiveItem(u32, u32);
 
-bool32 sub_08081420(Entity* this) {
-    int flag = flag2global(this->field_0x86.HWORD);
-    int item_id = this->type;
-    int subvalue = this->type2;
+bool32 sub_08081420(ItemOnGroundEntity* this) {
+    int flag = flag2global(this->unk_86);
+    int item_id = super->type;
+    int subvalue = super->type2;
     if (flag != -1)
     {
         int item = get_item_for_global_flag_with_default(flag, get_item_from_value_and_subvalue(item_id, subvalue));
@@ -89,7 +90,7 @@ bool32 sub_08081420(Entity* this) {
     }
 
     if (((gItemMetaData[item_id].unk3 & 0x2) || !GetInventoryValue(item_id))) {
-        SetDefaultPriority(this, PRIO_PLAYER_EVENT);
+        SetEntityPriority(super, PRIO_PLAYER_EVENT);
         CreateItemEntity(item_id, subvalue, 0);
         return TRUE;
     } else {

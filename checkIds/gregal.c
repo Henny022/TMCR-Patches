@@ -58,12 +58,12 @@ void sub_0806C99C(Entity* this, ScriptExecutionContext* context) {
 extern u16 script_WindTribespeople6;
 
 void sub_0806C7D4(Entity* this) {
-    if (this->interactType == '\x02') {
+    if (this->interactType == INTERACTION_FUSE) {
         this->action = 3;
-        this->interactType = 0;
-        sub_0806F118(this);
+        this->interactType = INTERACTION_NONE;
+        InitializeNPCFusion(this);
     } else {
-        sub_0807DD94(this, NULL);
+        ExecuteScriptAndHandleAnimation(this, NULL);
         if ((this->type2 == 3) && (!CheckGlobalFlag(WARP_EVENT_END) || !CheckLocalFlag(SORA_ELDER_TALK1ST)) && (CheckLocalFlag(SORA_ELDER_RECOVER)) && (CheckRoomFlag(0))) {
             this->type2 = 7;
             sub_0807DD80(this, &script_WindTribespeople6);

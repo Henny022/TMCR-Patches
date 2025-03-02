@@ -93,7 +93,7 @@ typedef struct {
 
 extern void sub_08080CB4(Entity*);
 
-void sub_08095088(CutsceneMiscObjectEntity* this) {
+void CutsceneMiscObject_Type7(CutsceneMiscObjectEntity* this) {
     u32 tmp;
 
     switch (super->action) {
@@ -102,18 +102,18 @@ void sub_08095088(CutsceneMiscObjectEntity* this) {
                 DeleteThisEntity();
             super->action = 1;
             super->spritePriority.b0 = 7;
-            sub_080787B4(super);
+            AddInteractableCheckableObject(super);
             break;
         case 1:
             if (super->interactType != 0) {
                 super->interactType = 0;
                 super->action = 2;
-                sub_080788E0(super);
+                RemoveInteractableObject(super);
                 CreateEzloHint(TEXT_INDEX(TEXT_BELARI, 0x1F), 0);
             }
             break;
         case 2:
-            if ((gMessage.doTextBox & 0x7F) == 0) {
+            if ((gMessage.state & MESSAGE_ACTIVE) == 0) {
                 int item = get_item_for_global_flag_with_default(CUSTOM_FLAG_PICKED_UP_JABBERNUT_CHECK, ITEM_JABBERNUT);
                 CreateItemEntity(get_item_id(item), get_item_subvalue(item), 0);
                 SetGlobalFlag(CUSTOM_FLAG_PICKED_UP_JABBERNUT_CHECK);

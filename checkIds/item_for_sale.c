@@ -2,7 +2,6 @@
 #include <entity.h>
 #include <room.h>
 #include <player.h>
-#include <new_player.h>
 #include <game.h>
 #include <message.h>
 #include <save.h>
@@ -10,6 +9,7 @@
 #include <object.h>
 #include <item.h>
 #include <script.h>
+#include <kinstone.h>
 
 #include "base.h"
 
@@ -24,13 +24,12 @@ typedef struct {
     /*0x86*/ u16 flag;
 } ItemForSaleEntity;
 
-extern GenericEntity gUnk_030015A0[];
 
-extern struct_03003DF8* sub_080784E4(void);
+extern InteractableObject* sub_080784E4(void);
 
 bool32 sub_080782C0(void) {
     u8 tmp;
-    GenericEntity* entity;
+    Entity* entity;
 
     if (gPlayerState.framestate == PL_STATE_IDLE) {
         tmp = gPlayerState.framestate_last;
@@ -64,7 +63,7 @@ bool32 sub_080782C0(void) {
     if (CanDispEzloMessage()) {
         return TRUE;
     }
-    entity = (GenericEntity*) sub_080784E4()->entity;
+    entity = sub_080784E4()->entity;
     if (entity == NULL) {
         return FALSE;
     }
@@ -72,15 +71,15 @@ bool32 sub_080782C0(void) {
         if (gPlayerState.heldObject != 4) {
             return FALSE;
         }
-        if ((gNewPlayerEntity.unk_74)->child->kind != OBJECT || (gNewPlayerEntity.unk_74)->child->id != SHOP_ITEM) {
+        if ((gPlayerEntity.carriedEntity)->child->kind != OBJECT || (gPlayerEntity.carriedEntity)->child->id != SHOP_ITEM) {
             return FALSE;
         }
     }
-    if (((gPlayerState.playerInput.newInput & PLAYER_INPUT_1000) != 0) && ((u8)(gUnk_03003DF0.unk_4[3] - 1) < 100)) {
+    if (((gPlayerState.playerInput.newInput & INPUT_FUSE) != 0) && ((u8)(gPossibleInteraction.currentObject->kinstoneId - 1) < 100)) {
         AddKinstoneToBag(0);
-        if (gSave.kinstoneAmounts[0] != 0) {
-            gUnk_03003DF0.unk_2 = gUnk_03003DF0.unk_4[3];
-            *(u8*)(*(int*)(gUnk_03003DF0.unk_4 + 8) + 0x39) = 2;
+        if (gSave.kinstones.amounts[0] != 0) {
+            gPossibleInteraction.kinstoneId = gPossibleInteraction.currentObject->kinstoneId;
+            gPossibleInteraction.currentObject->entity->interactType = INTERACTION_FUSE;
             gPlayerState.queued_action = PLAYER_08070E9C;
         } else {
             CreateEzloHint(TEXT_INDEX(TEXT_EZLO, 0x65), 0);
@@ -88,30 +87,30 @@ bool32 sub_080782C0(void) {
         ForceSetPlayerState(PL_STATE_TALKEZLO);
         return TRUE;
     }
-    if ((gPlayerState.playerInput.newInput & (PLAYER_INPUT_80 | PLAYER_INPUT_8)) == 0) {
+    if ((gPlayerState.playerInput.newInput & (INPUT_ACTION | INPUT_INTERACT)) == 0) {
         return FALSE;
     }
-    switch (gUnk_03003DF0.unk_4[1]) {
+    switch (gPossibleInteraction.currentObject->type) {
         default:
-        case 0:
+        case INTERACTION_NONE:
             return TRUE;
-        case 1:
-        case 6:
-        case 9:
-        case 0xa:
+        case INTERACTION_TALK:
+        case INTERACTION_USE_BIG_KEY:
+        case INTERACTION_CHECK:
+        case INTERACTION_DROP_PEDESTAL:
             gPlayerState.queued_action = PLAYER_08070E9C;
             ForceSetPlayerState(PL_STATE_TALKEZLO);
             // fallthrough
-        case 3:
-        case 5:
-        case 7:
-            entity->base.interactType = 1;
-            gUnk_03003DF0.unk_2 = 0;
+        case INTERACTION_OPEN_CHEST:
+        case INTERACTION_USE_SMALL_KEY:
+        case INTERACTION_TALK_MINISH:
+            entity->interactType = INTERACTION_TALK;
+            gPossibleInteraction.kinstoneId = KINSTONE_NONE;
             return TRUE;
-        case 8:
+        case INTERACTION_LIFT_SHOP_ITEM:
             if (gRoomVars.shopItemType == 0) {
-                entity->base.interactType = 1;
-                int index = entity - gUnk_030015A0;
+                entity->interactType = INTERACTION_TALK;
+                int index = (GenericEntity*) entity - gEntities;
                 gRoomVars.shopItemType = ITEM_SHOP_ENTITY; // special value to indicate entity list index
                 gRoomVars.shopItemType2 = index;
                 return TRUE;
@@ -124,7 +123,7 @@ bool32 sub_080782C0(void) {
 s32 GetItemPrice(u32 item) {
     if (item == ITEM_SHOP_ENTITY)
     {
-        ItemForSaleEntity* e = (ItemForSaleEntity*) &gUnk_030015A0[gRoomVars.shopItemType2];
+        ItemForSaleEntity* e = (ItemForSaleEntity*) &gEntities[gRoomVars.shopItemType2];
         if (e->price)
             return e->price;
         item = e->base.type;
@@ -139,7 +138,7 @@ extern GenericEntity* GiveItemWithCutscene(u32 item, u32 type2, u32 delay);
 void InitItemGetSequence(u32 type, u32 type2, u32 delay) {
     if (type == ITEM_SHOP_ENTITY)
     {
-        ItemForSaleEntity* e = (ItemForSaleEntity*) &gUnk_030015A0[gRoomVars.shopItemType2];
+        ItemForSaleEntity* e = (ItemForSaleEntity*) &gEntities[gRoomVars.shopItemType2];
         type = e->base.type;
         type2 = e->base.type2;
         if(e->flag)
@@ -151,7 +150,7 @@ void InitItemGetSequence(u32 type, u32 type2, u32 delay) {
     }
     GenericEntity* e = GiveItemWithCutscene(type, type2, delay);
     if (e != NULL) {
-        e->base.parent = &gPlayerEntity;
+        e->base.parent = &gPlayerEntity.base;
         SetPlayerItemGetState(e, e->base.type, 0);
     }
 }
@@ -201,7 +200,7 @@ void sub_08065370(Entity* this, ScriptExecutionContext* context) {
             break;
         case ITEM_SHOP_ENTITY:
             {
-                ItemForSaleEntity* e = (ItemForSaleEntity*) &gUnk_030015A0[gRoomVars.shopItemType2];
+                ItemForSaleEntity* e = (ItemForSaleEntity*) &gEntities[gRoomVars.shopItemType2];
                 localFlag = e->flag;
             }
     }
@@ -217,11 +216,11 @@ void sub_08065370(Entity* this, ScriptExecutionContext* context) {
             if (localFlag) {
                 SetFlag(localFlag);
             }
-            if (gSave.unk5C <= ~1u) {
-                gSave.unk5C++;
+            if (gSave.items_bought <= ~1u) {
+                gSave.items_bought++;
             }
 
-            if (gSave.unk5C >= 10) {
+            if (gSave.items_bought >= 10) {
                 context->intVariable = TEXT_INDEX(TEXT_STOCKWELL, 0x11);
             } else {
                 if (itemPrice >= 100) {

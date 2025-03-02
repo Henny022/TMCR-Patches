@@ -7,10 +7,17 @@
 
 #include "base.h"
 
+typedef struct {
+    /*0x00*/ Entity base;
+    /*0x68*/ u8 fusionOffer;
+    /*0x69*/ u8 unused[27];
+    /*0x84*/ ScriptExecutionContext* context;
+} PercyEntity;
+
 void sub_0806B540(Entity* this) {
     ScriptExecutionContext* context;
 
-    context = *(ScriptExecutionContext**)&this->cutsceneBeh;
+    context = ((PercyEntity*)this)->context;
     switch (context->unk_18) {
         case 0:
             MessageNoOverlap(TEXT_INDEX(TEXT_PERCY, 0x12), this);
@@ -21,13 +28,13 @@ void sub_0806B540(Entity* this) {
             SetLocalFlag(0x3f);
             break;
         case 1:
-            if ((gMessage.doTextBox & 0x7f) == 0) {
+            if ((gMessage.state & MESSAGE_ACTIVE) == 0) {
                 context->unk_18 = 2;
                 MessageNoOverlap(TEXT_INDEX(TEXT_PERCY, 0x15), this);
             }
             break;
         case 2:
-            if ((gMessage.doTextBox & 0x7f) == 0) {
+            if ((gMessage.state & MESSAGE_ACTIVE) == 0) {
                 context->unk_18 = 3;
                 {
                     int item;
@@ -44,7 +51,7 @@ void sub_0806B540(Entity* this) {
             }
             break;
         case 3:
-            if ((gPlayerEntity.action != PLAYER_ITEMGET)) {
+            if ((gPlayerEntity.base.action != PLAYER_ITEMGET)) {
                 context->wait = 0x2d;
                 return;
             }
