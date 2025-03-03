@@ -41,8 +41,9 @@ WORD 0 0 0 0
 SCRIPTIO_Header:
 WORD gScriptIO
 
-#include "main.cevent"
 #include "debug/mgba.cevent"
+
+#include "main.cevent"
 
 #include "qol/game_code.event"
 #include "qol/item_select.cevent"
@@ -56,12 +57,12 @@ WORD gScriptIO
 
 #include "new_game.cevent"
 
-#include "io/uart.cevent"
-#include "checkIds/protocol_uart.cevent"
+//#include "io/uart.cevent"
+//#include "checkIds/protocol_uart.cevent"
 //#include "checkIds/protocol_scriptio.cevent"
-#include "checkIds/base_protocol.cevent"
-//#include "checkIds/base.cevent"
-#include "shhh/shhh.event"
+//#include "checkIds/base_protocol.cevent"
+#include "checkIds/base.cevent"
+//#include "shhh/shhh.event"
 
 #include "features/keysanity.cevent"
 #include "features/script/install.event"
@@ -117,9 +118,9 @@ WORD gScriptIO
 
 ALIGN 4
 n_custom_init:
-WORD 1
+WORD 0
 custom_init:
-POIN uart_init
+//POIN uart_init
 
 // example starting location
 // links room in front of the stairs

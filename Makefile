@@ -43,6 +43,9 @@ EACFLAGS =
 %.o: %.c
 	$(CC) $(CFLAGS) -c -o $@ $<
 
+%.s: %.c
+	$(CC) $(CFLAGS) -S -o $@ $<
+
 %.o: %.s
 	$(AS) $(ASFLAGS) -c -o $@ $<
 

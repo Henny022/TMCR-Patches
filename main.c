@@ -1,6 +1,8 @@
 #include <main.h>
 #include <common.h>
 
+#include "debug/mgba.h"
+
 typedef void(*InitFunc)(void);
 extern const InitFunc custom_init[];
 extern const u32 n_custom_init;
@@ -21,6 +23,7 @@ extern u32 gRand;
 
 void AgbMain(void) {
     // Initialization
+    mgba_debug_enable();
     InitOverlays();
     InitSound();
     InitDMA();
@@ -42,6 +45,8 @@ void AgbMain(void) {
         custom_init[i]();
     }
     
+    mgba_print(LOG_DEBUG, "starting game loop");
+
     // Game Loop
     while (TRUE) {
         ReadKeyInput();

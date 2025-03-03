@@ -2,6 +2,8 @@
 #include <item.h>
 #include "../../checkIds/base.h"
 
+#include "../../debug/mgba.h"
+
 typedef void (*ScriptCommand)(Entity*, ScriptExecutionContext*);
 
 extern void ScriptCommandNop(Entity* entity, ScriptExecutionContext* context);
@@ -160,6 +162,7 @@ void ScriptCommand_GiveItemForFlag(Entity* entity, ScriptExecutionContext* conte
 }
 
 void ExecuteScript(Entity* entity, ScriptExecutionContext* context) {
+    mgba_print(LOG_DEBUG, "ExecuteScript()");
     static const ScriptCommand gScriptCommands[] = {
         ScriptCommandNop,
         ScriptCommand_BeginBlock,
@@ -307,16 +310,24 @@ void ExecuteScript(Entity* entity, ScriptExecutionContext* context) {
 
     if (!context->scriptInstructionPointer)
         return;
+    mgba_print(LOG_DEBUG, "ExecuteScript(1) ");
     if (context->wait) {
         context->wait--;
+        mgba_print(LOG_DEBUG, "ExecuteScript(2) ");
     } else {
+        mgba_print(LOG_DEBUG, "ExecuteScript(3) ");
         ActiveScriptInfo* activeScriptInfo = &gActiveScriptInfo;
         activeScriptInfo->flags = 0;
         do {
+            mgba_print(LOG_DEBUG, "ExecuteScript(5) ");
             u32 cmd = GetNextScriptCommandHalfword(context->scriptInstructionPointer);
+            mgba_print(LOG_DEBUG, "ExecuteScript(6) ");
             u16* lastInstruction;
-            if (cmd == 0xFFFF)
+            if (cmd == 0xFFFF) {
+                mgba_print(LOG_DEBUG, "return ExecuteScript(2)");
                 return;
+            }
+            mgba_print(LOG_DEBUG, "ExecuteScript(4) ");
             activeScriptInfo->commandSize = cmd >> 0xA;
             activeScriptInfo->commandIndex = cmd & 0x3FF;
             lastInstruction = context->scriptInstructionPointer;
@@ -328,4 +339,5 @@ void ExecuteScript(Entity* entity, ScriptExecutionContext* context) {
             }
         } while (activeScriptInfo->flags & 3);
     }
+    mgba_print(LOG_DEBUG, "return ExecuteScript() ");
 }
