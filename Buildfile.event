@@ -114,6 +114,8 @@ WORD gScriptIO
 #include "fixes/dojo_requirements.cevent"
 #include "fixes/cof_smallkeydoor.event"
 
+#include "entrance_poc.event"
+
 #include "modules.cevent"
 
 ALIGN 4
@@ -138,6 +140,15 @@ BYTE 0x04
 // example check ids
 ALIGN 4
 n_checks:
-WORD 0
+WORD 3
 checks:
 // Check global_flag itemId subvalue
+Check 2561 6 0
+Check 2562 24 0
+Check 534 32 0
+
+ALIGN 4
+n_entrances:
+WORD 1
+entrances:
+WORD 0x1359c0 0x13735c
