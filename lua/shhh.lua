@@ -36,17 +36,19 @@ function socket_recv()
         data = receive(7)
         local addr, port, id, length = string.unpack("<I1I1I4I1", data)
         last_ids[port] = id
-        data = receive(length)
-        if ~scriptio.can_send(port) then
+        local payload = receive(length)
+		console:log('>D' .. data .. payload)
+        if not scriptio.can_send(port) then
             console:error('protocol error, buffer full ' .. port)
             return
         end
-        scriptio.send(addr, port, length, data)
+        scriptio.send(addr, port, length, payload)
         return
     end
     if data == 'A' then
         -- TODO check id
         data = receive(5)
+		console:log('>A' .. data)
         scriptio.ack_recv()
         return
     end
@@ -63,12 +65,14 @@ function scriptio_main()
         local id = send_id
         send_id = send_id + 1
         local packet = 'D' .. string.pack('<I1I1I4I1', addr, port, id, length) .. data
+		console:log('<' .. packet)
         s:send(packet)
     end
     for i=0,3 do
         if scriptio.has_ack_send(i) then
-            local packet = 'A' .. string.pack('<I1I4', port, id)
-            local id = last_ids[port]
+            local id = last_ids[i]
+            local packet = 'A' .. string.pack('<I1I4', i, id)
+			console:log('<' .. packet)
             s:send(packet)
             scriptio.ack_send(i)
         end
