@@ -44,8 +44,6 @@ void AgbMain(void) {
     {
         custom_init[i]();
     }
-    
-    mgba_print(LOG_DEBUG, "starting game loop");
 
     // Game Loop
     while (TRUE) {

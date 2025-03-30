@@ -3,7 +3,6 @@
 #include "../debug/mgba.h"
 
 void SetFlag(u32 flag) {
-    mgba_print(LOG_DEBUG, "SetFlag()");
     u32 type;
     u32 index;
 
@@ -28,7 +27,6 @@ void SetFlag(u32 flag) {
 }
 
 u32 CheckFlags(u32 flags) {
-    mgba_print(LOG_DEBUG, "CheckFlags()");
     u32 type;
     u32 index;
     u32 length;

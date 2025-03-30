@@ -48,6 +48,7 @@ WORD gScriptIO
 #include "qol/game_code.event"
 #include "qol/item_select.cevent"
 #include "qol/quickwarp.event"
+#include "qol/homewarp.cevent"
 #include "sram.event"
 #include "qol/autotext.cevent"
 #include "qol/fileselect.cevent"
@@ -57,12 +58,15 @@ WORD gScriptIO
 
 #include "new_game.cevent"
 
+#include "network/network_scriptio.cevent"
+
 //#include "io/uart.cevent"
 //#include "checkIds/protocol_uart.cevent"
 //#include "checkIds/protocol_scriptio.cevent"
 //#include "checkIds/base_protocol.cevent"
-#include "checkIds/base.cevent"
-//#include "shhh/shhh.event"
+#include "checkIds/base_network.cevent"
+//#include "checkIds/base.cevent"
+#include "shhh/shhh.event"
 
 #include "features/keysanity.cevent"
 #include "features/script/install.event"
@@ -114,7 +118,7 @@ WORD gScriptIO
 #include "fixes/dojo_requirements.cevent"
 #include "fixes/cof_smallkeydoor.event"
 
-#include "entrance_poc.event"
+//#include "entrance_lalalal.event"
 
 #include "modules.cevent"
 
@@ -140,15 +144,16 @@ BYTE 0x04
 // example check ids
 ALIGN 4
 n_checks:
-WORD 3
+WORD 0
 checks:
 // Check global_flag itemId subvalue
-Check 2561 6 0
-Check 2562 24 0
-Check 534 32 0
+//Check 2561 6 0
+//Check 2562 24 0
+//Check 534 32 0
+//#include "spoiler2.event"
 
 ALIGN 4
 n_entrances:
-WORD 1
+WORD 0
 entrances:
-WORD 0x1359c0 0x13735c
+//WORD 0x1359c0 0x13735c

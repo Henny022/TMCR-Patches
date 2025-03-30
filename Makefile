@@ -2,6 +2,7 @@
 # change these variables to configure build
 WARNINGS := -Wall -Wextra -Werror
 CFLAGS := -O2 -g
+CXXFLAGS := -O2 -g
 # ==== end config block ====
 
 ifndef REPO
@@ -9,6 +10,7 @@ $(error variable REPO not set)
 endif
 
 CC := arm-none-eabi-gcc
+CXX := arm-none-eabi-g++
 AS := arm-none-eabi-as
 OBJCOPY := arm-none-eabi-objcopy
 SCANINC := python tools/scaninc.py
@@ -18,6 +20,10 @@ CFLAGS += -ffunction-sections -fdata-sections
 CFLAGS += -mcpu=arm7tdmi -mthumb -mlong-calls
 CFLAGS += -I $(REPO)/tools/agbcc/include -I $(REPO)/include -nostdinc
 CFLAGS += -undef -DEU -DREVISION=0 -DLANGUAGE=ENGLISH
+
+CXXFLAGS += $(WARNINGS)
+CXXFLAGS += -ffunction-sections -fdata-sections
+CXXFLAGS += -mcpu=arm7tdmi -mthumb -mlong-calls
 
 ASFLAGS := -mcpu=arm7tdmi -mthumb
 ASFLAGS += -I $(REPO)/build/EU -I $(REPO)/asm/macros
@@ -42,6 +48,9 @@ EACFLAGS =
 
 %.o: %.c
 	$(CC) $(CFLAGS) -c -o $@ $<
+
+%.o: %.cpp
+	$(CXX) $(CXXFLAGS) -c -o $@ $<
 
 %.s: %.c
 	$(CC) $(CFLAGS) -S -o $@ $<

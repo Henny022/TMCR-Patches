@@ -12,7 +12,6 @@ extern void RegisterRoomEntity(Entity*, const EntityData*);
 extern void sub_0804AF0C(Entity*, const EntityData*);
 
 Entity* LoadRoomEntity(const EntityData* dat) {
-    mgba_print(LOG_DEBUG, "LoadRoomEntity()");
     int kind;
     Entity* entity;
 

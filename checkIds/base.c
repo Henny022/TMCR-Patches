@@ -12,7 +12,6 @@ extern const struct{
 
 int peek_item_for_global_flag(int flag)
 {
-    mgba_print(LOG_DEBUG, "peeking item");
     for (u32 i = 0; i < n_checks; i++)
     {
         if (checks[i].flag == flag)
@@ -25,7 +24,6 @@ int peek_item_for_global_flag(int flag)
 
 int get_item_for_global_flag(int flag)
 {
-    mgba_print(LOG_DEBUG, "getting item");
     SetGlobalFlag(flag);
     for (u32 i = 0; i < n_checks; i++)
     {

@@ -3,6 +3,7 @@ venv
 *.gba
 *.bps
 *.sav
+*.ss*
 *.o
 *.bin
 symbols.json
