@@ -22,6 +22,7 @@
 
 // EWRAM
 #define gScriptIO 0x02038560
+#define exit_transition_handle 0x02038620
 
 // ROM
 #define FreeSpace 0xef3340
@@ -64,8 +65,8 @@ WORD gScriptIO
 //#include "checkIds/protocol_uart.cevent"
 //#include "checkIds/protocol_scriptio.cevent"
 //#include "checkIds/base_protocol.cevent"
-#include "checkIds/base_network.cevent"
-//#include "checkIds/base.cevent"
+//#include "checkIds/base_network.cevent"
+#include "checkIds/base.cevent"
 #include "shhh/shhh.event"
 
 #include "features/keysanity.cevent"
@@ -118,7 +119,7 @@ WORD gScriptIO
 #include "fixes/dojo_requirements.cevent"
 #include "fixes/cof_smallkeydoor.event"
 
-//#include "entrance_lalalal.event"
+#include "entrance_lalalal.event"
 
 #include "modules.cevent"
 
@@ -143,14 +144,14 @@ BYTE 0x04
 
 // example check ids
 ALIGN 4
-n_checks:
-WORD 0
-checks:
+//n_checks:
+//WORD 0
+//checks:
 // Check global_flag itemId subvalue
 //Check 2561 6 0
 //Check 2562 24 0
 //Check 534 32 0
-//#include "spoiler2.event"
+#include "world0.event"
 
 ALIGN 4
 n_entrances:
